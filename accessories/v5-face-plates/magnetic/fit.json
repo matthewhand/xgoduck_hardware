@@ -1,0 +1,42 @@
+{
+  "points_local_mm": [
+    [
+      -17,
+      44
+    ],
+    [
+      -30.1,
+      39.6
+    ],
+    [
+      17,
+      44
+    ],
+    [
+      30.1,
+      39.6
+    ]
+  ],
+  "stock_front_skin_mm": 0.7,
+  "magnet_end_skin_mm": 0.68,
+  "seated_target_steel_to_magnet_distance_mm": 1.49,
+  "keeper_shoulder_overlap_on_pull_mm3": 2.229,
+  "rear_entry_clear_radius_mm": 2.55,
+  "pocket_radial_stock_wall_at_least_mm": 1.0,
+  "sensor_half_angle_deg": 45,
+  "optical_overlap_mm3": {
+    "camera": 0.0,
+    "tof": 0.0
+  },
+  "head_hardware_clearance_mm": 3.179,
+  "jaw_range_deg": [
+    0,
+    30,
+    0.25
+  ],
+  "min_jaw_gap_mm_capped_at_15": 15.0,
+  "face_net_removed_cm3": 0.1041,
+  "mask_plastic_g_at_1p2": 4.321,
+  "mask_pause_reference_mm_from_bed": 13.17,
+  "foot_coupon_pause_reference_mm_from_bed": 3.92
+}

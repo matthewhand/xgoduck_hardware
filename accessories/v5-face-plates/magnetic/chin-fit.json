@@ -1,0 +1,35 @@
+{
+  "stock_skin_mm": 0.75,
+  "nominal_magnet_to_steel_gap_mm": 1.35,
+  "steel_disc_diameter_thickness_mm": [
+    8,
+    0.6
+  ],
+  "magnet_diameter_thickness_mm": [
+    8,
+    2
+  ],
+  "hatch_travel_mm": 3.6,
+  "nominal_inner_height_mm": 2.8,
+  "lid_top_mm": 2.64,
+  "maximum_hatch_slide_intersection_mm3": 0,
+  "maximum_hatch_lift_intersection_mm3": 0,
+  "maximum_target_insert_intersection_mm3": 0,
+  "seated_hatch_blocks_rigid_reverse_mm3": 0.2951040016742945,
+  "seated_hatch_blocks_direct_lift_mm3": 2.313211252602592,
+  "jaw_sweep_deg": [
+    0,
+    30,
+    0.25
+  ],
+  "minimum_beard_to_opposite_jaw_mm_capped_at_20": 10.199996948242186,
+  "estimated_mass_g": {
+    "host_delta": -0.9052205987257176,
+    "lid": 0.45533784000535443,
+    "beard": 1.493302838969515,
+    "mild_steel": 0.47274058849508405,
+    "ndfeb": 1.5055432754620508
+  },
+  "whole_loadout_increment_g": 3.021703944206287,
+  "cheek_pocket_to_hatch_clearance_mm_capped_at_40": 22.635082480443675
+}

@@ -24,3 +24,11 @@ Generate the STLs from the hardware repository with NumPy, SciPy and manifold3d 
 ```sh
 python accessories/v5-slide-on-backpack/removable-rails/rail-cartridges.py
 ```
+
+## Everyday protective cover
+
+The [plain guard](print/plain-protective-cover.stl) uses the same top-entry latch and vents. Its outer face omits the tail yoke, charging contacts, runners and stacking deck. Fit it on the two removable rails for everyday board protection. The [runner cover](../../v5-raptor-tail/roll-shoe-cover/README.md) replaces the plain guard when the tail is needed.
+
+![Flush receiver, plain protective guard and removable runner cover](rear-configurations.png)
+
+With the stock head, the receiver alone completed four of four simulated rolls. With the plain guard and both rails, three of four completed the roll and resumed walking. In the missed trial the robot turned 340.7° and fell during walk-off. These four settling times are a deterministic screen. [Recorded rolls](plain-guard-roll.json)

@@ -1,0 +1,14 @@
+{
+  "mass_g": 882.94,
+  "upright": true,
+  "transitions": 3,
+  "fell": true,
+  "forward_m": 0.12149416463537889,
+  "yaw_deg": -80.95574321260385,
+  "peak_tilt_deg": 103.30146787386785,
+  "both_feet": 41,
+  "recovered_s": 3.26,
+  "resumed_forward_m": 2.4530920039452635,
+  "resumed_both_feet": 38,
+  "passed": true
+}

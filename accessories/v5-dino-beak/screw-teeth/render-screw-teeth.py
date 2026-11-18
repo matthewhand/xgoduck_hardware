@@ -1,4 +1,4 @@
-"""Render screw-retained side rows and a section through an actual M2 pocket."""
+"""Render assembled and stripped flush jaw hosts from their checked CAD geometry."""
 from pathlib import Path
 import runpy
 import sys
@@ -9,74 +9,65 @@ HERE=Path(__file__).resolve().parent
 sys.path.insert(0,str(HERE.parents[1]))
 from cad_figure import render,label,bg,muted
 g=runpy.run_path(str(HERE/'screw-teeth.py'))
-p=g['build']()
+parts=g['build']()
 jaw=g['FIT']['jaw_pose']
-shell=[116,143,143]; lower=[114,135,114]; plastic=[229,187,115]; metal=[106,117,141]
-nut=[192,143,87];boss=[90,151,146]
+shell=[127,161,160]; lower=[140,155,119]; strip=[232,184,108]; metal=[119,134,151]; nut=[212,139,82]
 
 
-def trimesh(s,c):
+def triangles(s,c):
     m=s.to_mesh()
-    return (m.vert_properties[m.tri_verts,:3].copy(), c)
+    return (m.vert_properties[m.tri_verts,:3].copy(),c)
 
 
-def scene(side,fitted):
-    r=p[side]
-    transform=(lambda s:jaw(s,11)) if side=='lower' else (lambda s:s)
-    bits=[trimesh(transform(r['stock']),shell if side=='upper' else lower),trimesh(transform(r['bosses']),boss)]
-    for sign in [-1,1]:
-        strip=r['strip'] if sign==1 else r['strip'].mirror((1,0,0))
-        if not fitted:strip=strip.translate((sign*10,0,0))
-        bits.append(trimesh(transform(strip),plastic))
+def scene(fitted):
+    top=g['CAD']['read_stock']('MOUTH_UP_TPU').rotate((180,0,0)).translate((0,-43.840,11))
+    bottom=g['CAD']['read_stock']('MOUTH_BOTTOM_TPU').translate((0,-15.54,2.8))
+    bits=[triangles(top,[94,110,107]),triangles(jaw(bottom,12),[94,110,107])]
+    for side,r in parts.items():
+        pose=(lambda s:jaw(s,12)) if side=='lower' else (lambda s:s)
+        bits.append(triangles(pose(r['mod']),shell if side=='upper' else lower))
+        if fitted: bits.append(triangles(pose(r['rows']),strip))
         for i,item in enumerate(r['hardware']):
-            part=item if sign==1 else item.mirror((1,0,0))
-            if not fitted and i%2==0:part=part.translate((sign*18,0,0))
-            bits.append(trimesh(transform(part),metal if i%2==0 else nut))
+            if not fitted and i%2==0: continue
+            bits.append(triangles(pose(g['pair'](item)),nut if i%2 else metal))
     return bits
 
 
-def cross_section(im):
-    r=p['upper']
-    y=g['FRONT']['upper']+4.61
-    # Rotating +90 about X puts print-Y along the section axis, and Z along -v.
-    parts=[(r['stock'],shell),(r['bosses'],boss),(r['strip'],plastic)]
-    parts+=[(part,metal if i%2==0 else nut) for i,part in enumerate(r['hardware'][:2])]
-    draw=ImageDraw.Draw(im)
-    for shape,color in parts:
-        polys=shape.rotate((90,0,0)).slice(y).to_polygons()
-        for poly in sorted(polys,key=lambda a:-abs(np.sum(a[:,0]*np.roll(a[:,1],-1)-a[:,1]*np.roll(a[:,0],-1)))):
-            signed=np.sum(poly[:,0]*np.roll(poly[:,1],-1)-poly[:,1]*np.roll(poly[:,0],-1))
-            xy=[(round(56+(x-40)*19),round(733+(z+13.05)*19)) for x,z in poly]
-            draw.polygon(xy, fill=tuple(color) if signed>0 else bg)
-    # Cover everything outside the diagram, including clipped host geometry.
-    draw.rectangle((0,614,28,832),fill=bg)
-    draw.rectangle((350,614,1139,832),fill=bg)
+def cross_section():
+    r=parts['upper']
+    y,z=g['sites']('upper')[0]
+    items=[(r['mod'],shell),(r['strip'],strip),(r['hardware'][0],metal),(r['hardware'][1],nut)]
+    canvas=Image.new('RGB',(510,165),bg)
+    draw=ImageDraw.Draw(canvas)
+    for shape,color in items:
+        polys=shape.rotate((90,0,0)).slice(y+.012).to_polygons()
+        def signed(p):return np.sum(p[:,0]*np.roll(p[:,1],-1)-p[:,1]*np.roll(p[:,0],-1))
+        for poly in sorted(polys,key=lambda a:-abs(signed(a))):
+            xy=[(round(39+(x-39)*32),round(85+(zz+z)*32)) for x,zz in poly]
+            draw.polygon(xy,fill=tuple(color) if signed(poly)>0 else bg)
+    return canvas
 
 
 def main():
-    output=HERE/'figures';output.mkdir(exist_ok=True)
-    im=Image.new('RGB',(1140,836),bg)
-    allparts=scene('upper',True)+scene('lower',True)
-    a,_=render(allparts,566,326,[1,-1.45,.35],[0,0,1],focus=[0,-25,9],k=3.6)
-    b,_=render(scene('upper',False)+scene('lower',False),566,326,[.94,-1.25,.34],[0,0,1],focus=[0,-25,9],k=3.2)
-    im.paste(a,(2,116));im.paste(b,(571,116))
-    # Isolate the four-tooth right-side strip in its installed orientation.
-    strip=p['upper']['strip']
-    side,_=render([trimesh(strip,plastic)],302,125,[1,-.08,.16],[0,0,1],k=8.2)
-    im.paste(side,(38,479))
-    cross_section(im)
-    label(im,(28,12),'Screw-retained cheek teeth',32,True)
-    label(im,(28,62),'Four independent rows. Two recessed M2 screws per row. The stock mouth opening stays clear.',18)
-    label(im,(35,445),'Installed on the two jaw prints',21,True)
-    label(im,(604,445),'Exploded along the screw axes',21,True)
-    label(im,(385,502),'One rounded four-tooth strip',23,True)
-    label(im,(385,541),'Choose upper or lower, left or right. There is no bridge across the bill.',18)
-    label(im,(35,625),'Section through one upper mount',21,True)
-    label(im,(385,662),'Rigid host + print-in M2 nut',22,True)
-    label(im,(385,700),'The boss projects outward from the stock cheek. The nut stays captured',18)
-    label(im,(385,728),'when the strip is removed. The screw head sits 0.5 mm below the rim.',18)
-    label(im,(385,781),'Grey-blue screw · tan nut · gold strip · teal external boss',16,False,muted)
-    im.save(output/'screw-teeth.png',optimize=True)
+    out=HERE/'figures';out.mkdir(exist_ok=True)
+    im=Image.new('RGB',(1140,780),bg)
+    label(im,(28,10),'Flush jaw mounts and removable cheek teeth',32,True)
+    label(im,(28,60),'Two recessed M2 screws per four-tooth strip. The square nuts stay inside the original jaw walls.',18)
+    open_scene=scene(False)
+    for pos,obj in [(0,scene(True)),(570,open_scene)]:
+        view,_=render(obj,570,280,[1,-1.18,.37],[0,0,1],focus=[0,-8,9],k=3.5)
+        im.paste(view,(pos,101))
+    label(im,(32,371),'Four strips installed',22,True)
+    label(im,(600,371),'All strips and screws removed',22,True)
+    close,proj=render(open_scene,544,182,[1,-.06,.03],[0,0,1],focus=[43.8,-34.2,7.4],k=10.0)
+    im.paste(close,(23,446));im.paste(cross_section(),(603,452))
+    label(im,(32,638),'Right cheek, stripped',22,True)
+    label(im,(606,638),'Upper screw and captured nut, cutaway',22,True)
+    label(im,(32,679),'The upper pair sits in the thicker return of the stock print.',17)
+    label(im,(32,707),'The lower pair sits 14 mm apart in the lower sidewall.',17)
+    label(im,(606,679),'Blue-green is the original shell profile. Gold lifts off',17)
+    label(im,(606,707),'with the strip. The screw sits below its outer rim.',17)
+    im.save(out/'screw-teeth.png',optimize=True)
 
 
 if __name__=='__main__':

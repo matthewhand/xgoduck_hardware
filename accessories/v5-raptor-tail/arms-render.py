@@ -22,8 +22,8 @@ def face(size, bold=False):
     return ImageFont.load_default()
 
 
-def panel(load_scene, mode, rig):
-    model = load_scene(mj, lambda spec: STUDY["build_arms"](spec, "off" if mode == "bare" else "arms"))
+def panel(load_scene, mode, rig, build_arms=STUDY["build_arms"]):
+    model = load_scene(mj, lambda spec: build_arms(spec, "off" if mode == "bare" else "arms"))
     data = mj.MjData(model)
     for joint in range(rig.model.njnt):
         source = rig.model.joint(joint)
@@ -38,7 +38,8 @@ def panel(load_scene, mode, rig):
         name = geom.name or ""
         if name.startswith(("arm_", "collar_")):
             model.geom_group[i] = 1
-            model.geom_rgba[i] = ([.14,.83,.88,1] if name.startswith("collar_strip") else
+            model.geom_rgba[i] = ([1,.90,.61,1] if name.startswith("arm_digit_") else
+                                  [.14,.83,.88,1] if name.startswith("collar_strip") else
                                   [.97,.49,.14,1] if name.startswith("arm_") else [.99,.78,.24,1])
         elif mode == "isolated":
             model.geom_group[i] = 5

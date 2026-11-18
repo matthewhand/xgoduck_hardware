@@ -1,0 +1,10 @@
+{
+  "service_travel_mm": 76,
+  "overlap_mm3": {
+    "fixed rails": 0,
+    "removable rails": 0,
+    "separate root yoke": 0,
+    "M3 yoke hardware": 0
+  },
+  "incremental_runner_mass_g_at_1p20": 5.661
+}

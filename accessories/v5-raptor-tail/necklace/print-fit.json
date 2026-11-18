@@ -1,0 +1,6 @@
+{
+  "fingers_per_paw": 3,
+  "tip_radius_mm": 1.12,
+  "print_mass_g_at_1p20": 4.692,
+  "added_finger_mass_g": 0.37
+}

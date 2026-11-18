@@ -4,32 +4,47 @@
     30,
     0.25
   ],
-  "minimum_clearances_mm_capped_at_10": {
-    "upper metal vs original rigid wall": 1.6458166942963932,
-    "upper metal vs same-side pad": 3.648985702271388,
-    "upper cheek strip vs original rigid wall": 5.137188281680185,
-    "upper bosses vs same-side pad": 1.6895255016194721,
-    "lower metal vs original rigid wall": 1.6000000000000014,
-    "lower metal vs same-side pad": 5.296815490722658,
-    "lower cheek strip vs original rigid wall": 5.200000000000003,
-    "lower bosses vs same-side pad": 3.457977024563707,
-    "upper fittings vs face": 2.135254983432741,
-    "upper fittings vs ToF housing": 10,
-    "across jaws": 0.7000000000000011,
-    "upper fittings vs lower rigid jaw": 0.6999921798706055,
-    "upper fittings vs lower pad": 4.0215335064359214,
-    "lower fittings vs upper rigid jaw": 0.7121391383984808,
-    "lower fittings vs upper pad": 2.1353164424245445,
-    "lower fittings vs face": 5.85751877709773,
-    "lower fittings vs ToF housing": 10
+  "minimum_clearances_mm_capped_at_2": {
+    "upper metal vs same-side pad": 0.5056688482499896,
+    "upper strip vs same-side pad": 1.904335409701146,
+    "lower metal vs same-side pad": 0.7468154907226534,
+    "lower strip vs same-side pad": 2.0,
+    "upper fittings vs face": 2.0,
+    "upper fittings vs ToF housing": 2.0,
+    "across jaws": 0.8080224669439201,
+    "upper fittings vs lower rigid jaw": 0.7981292879734971,
+    "upper fittings vs lower pad": 2.0,
+    "lower fittings vs upper rigid jaw": 1.5909363146754374,
+    "lower fittings vs upper pad": 2.0,
+    "lower fittings vs face": 2.0,
+    "lower fittings vs ToF housing": 2.0
   },
-  "metal_outside_55deg_vfov_horizontal_margin_mm": 45.216251373291016,
-  "net_rigid_volume_cm3": {
-    "upper": 0.7600184837793057,
-    "lower": 0.6911801225242171
+  "metal_outside_55deg_vfov_horizontal_margin_mm": 40.66625213623047,
+  "exterior_added_volume_mm3": {
+    "upper": 0.0,
+    "lower": 0.0
+  },
+  "material_removed_cm3": {
+    "upper": 0.15956961706551293,
+    "lower": 0.15932633651786074
+  },
+  "blind_bore_depth_on_axis_mm": {
+    "upper": [
+      3.228,
+      3.204
+    ],
+    "lower": [
+      3.2,
+      3.2
+    ]
+  },
+  "pocket_stock_clearance_verified_mm": 0.25,
+  "nut_roof_z_in_print_mm": {
+    "upper": 13.615,
+    "lower": 7.115
   },
   "volume_per_four_tooth_strip_cm3": {
-    "upper": 0.4425149904961616,
-    "lower": 0.4239631920711451
+    "upper": 0.3253830482163528,
+    "lower": 0.283280032769479
   }
 }

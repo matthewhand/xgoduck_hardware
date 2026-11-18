@@ -1,5 +1,7 @@
 # Removable V5 masquerade mask and chin beard
 
+For a smooth chin and brow when accessories are removed, use the [concealed magnetic revision](magnetic/README.md). This guide covers the alternate screw-mounted face parts.
+
 ![Actual assembled face and chin accessory meshes](assembled.png)
 
 The pierced brow has four front-facing bolts, two on each side of the central camera. The scalloped beard has two underside bolts on 22 mm centres. Both accessories come off independently after printing. The beard moves with the lower jaw. Its mounting points leave the separate left and right tooth rails available.
@@ -13,7 +15,7 @@ The pierced brow has four front-facing bolts, two on each side of the central ca
 | Beard only | [Replacement V5 JAW](print/jaw-two-chin-nut-bosses.stl) and [beard](print/scalloped-beard.stl) |
 | Beard and independent four-tooth cheek strips | Use the [combined replacement JAW](print/jaw-side-teeth-and-chin.stl) in place of the beard-only jaw. Add your choice of [side strips and upper host](../v5-dino-beak/screw-teeth/). |
 
-The raised mounting bosses are additions to the original V5 meshes. Print the replacement hosts before assembling the head. The stock camera housing, mouth pads and servo hardware retain their existing mounting points. The lower side-strip nuts use a different pocket shape and installation method. On the **combined** jaw STL, the chin bosses lift the stock jaw surface 5.30 mm above the bed. The four side-nut pockets close at **Z = 10.81 mm** in the supplied orientation. Pause before the first layer that roofs them and check the layer in your slicer. The separate teeth-only jaw uses a different pause height. The two chin nuts slide in after printing.
+The raised mounting bosses are additions to the original V5 meshes. Print the replacement hosts before assembling the head. The stock camera housing, mouth pads and servo hardware retain their existing mounting points. The lower side-strip nuts use a different pocket shape and installation method. On the **combined** jaw STL, the chin bosses lift the stock jaw surface 5.30 mm above the bed. The four side-nut pockets close at **Z = 12.415 mm** in the supplied orientation. Pause before the first layer that roofs them and check the layer in your slicer. The separate teeth-only jaw uses a different pause height. The two chin nuts slide in after printing.
 
 ## Six small recessed fasteners
 

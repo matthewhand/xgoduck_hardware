@@ -1,0 +1,100 @@
+{
+  "smooth": {
+    "walk": {
+      "mass_g": 887.16,
+      "upright": true,
+      "transitions": 0,
+      "fell": false,
+      "forward_m": 3.0767300955120103,
+      "yaw_deg": 20.6040730348145,
+      "peak_tilt_deg": 9.784914376519302,
+      "both_feet": 47,
+      "recovered_s": null,
+      "resumed_forward_m": null,
+      "resumed_both_feet": 0,
+      "collar_mNm": 1.3,
+      "arms_mNm": 2.42,
+      "tail_mNm": -80.15,
+      "system_com_ahead_of_feet_mm": 11.86,
+      "collar_arm_floor_sample_pct": 0.0,
+      "arm_angle_deg_minmax": [
+        [
+          -0.21,
+          1.02
+        ],
+        [
+          -0.77,
+          1.21
+        ]
+      ],
+      "trunk_forward_deg": 8.53
+    },
+    "model_mass_g": {
+      "collar": 2.063,
+      "arms": 3.598,
+      "tail": 83.707
+    },
+    "right": {
+      "mass_g": 887.16,
+      "upright": true,
+      "transitions": 3,
+      "fell": true,
+      "forward_m": 0.19317850593456107,
+      "yaw_deg": -84.09920283144413,
+      "peak_tilt_deg": 103.19060469790955,
+      "both_feet": 42,
+      "recovered_s": 3.28,
+      "resumed_forward_m": 2.545933565085408,
+      "resumed_both_feet": 38
+    }
+  },
+  "three_claws": {
+    "walk": {
+      "mass_g": 887.57,
+      "upright": true,
+      "transitions": 0,
+      "fell": false,
+      "forward_m": 3.0638239477785967,
+      "yaw_deg": 19.520311784943353,
+      "peak_tilt_deg": 9.829173050865196,
+      "both_feet": 47,
+      "recovered_s": null,
+      "resumed_forward_m": null,
+      "resumed_both_feet": 0,
+      "collar_mNm": 1.3,
+      "arms_mNm": 2.75,
+      "tail_mNm": -80.16,
+      "system_com_ahead_of_feet_mm": 11.88,
+      "collar_arm_floor_sample_pct": 0.0,
+      "arm_angle_deg_minmax": [
+        [
+          0.33,
+          1.89
+        ],
+        [
+          -0.17,
+          1.96
+        ]
+      ],
+      "trunk_forward_deg": 8.53
+    },
+    "model_mass_g": {
+      "collar": 2.063,
+      "arms": 4.014,
+      "tail": 83.707
+    },
+    "right": {
+      "mass_g": 887.57,
+      "upright": true,
+      "transitions": 3,
+      "fell": true,
+      "forward_m": 0.17929690681825086,
+      "yaw_deg": -83.65027237691183,
+      "peak_tilt_deg": 103.15229347957857,
+      "both_feet": 40,
+      "recovered_s": 3.28,
+      "resumed_forward_m": 2.5474781736331673,
+      "resumed_both_feet": 38
+    }
+  }
+}

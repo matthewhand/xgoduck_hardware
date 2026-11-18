@@ -61,12 +61,12 @@ def build_arms(spec,loadout):
             (next((g for g in choices if g.group==3),choices[0])).conaffinity |= 4
 
 
-def run_trial(checks,length,loadout,case,roll_shoes):
+def run_trial(checks,length,loadout,case,roll_shoes,arm_builder=build_arms):
     class WithArms(checks['WalkSimulation']):
         def __init__(self,vx,yaw,*,configure,**kwargs):
             def build(spec):
                 configure(spec)
-                build_arms(spec,loadout)
+                arm_builder(spec,loadout)
             super().__init__(vx,yaw,configure=build,**kwargs)
     target,neck,head,speed=(12,-48,-65,.45) if case=='walk' or roll_shoes else (None,0,0,.2)
     attachment=None

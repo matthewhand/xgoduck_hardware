@@ -36,7 +36,7 @@ def stock_enclosure():
     return Manifold(Mesh(points, indices.reshape(-1,3).astype(np.uint32)))
 
 
-def build(stock, clearance):
+def build(stock, clearance, *, charging_contacts=True):
     profile = CrossSection([[(-2.8,-.2),(2.8,-.2),(4,2.6),(-4,2.6)]])
     groove = profile.offset(clearance,JoinType.Miter)
     fixed = stock
@@ -77,6 +77,8 @@ def build(stock, clearance):
     cover -= block(LEFT-1.9,LEFT+1.9,-14.3,-2.5,FACE+1.35,.1)
     tooth = CrossSection([[(-18.6,-.65),(-14,-.65),(-14,.55),(-16.8,.55),(-18.6,-.10)]])
     tooth = tooth.extrude(3.5).transform(((0,0,1,LEFT-1.75),(1,0,0,0),(0,1,0,0)))
+    if not charging_contacts:
+        return fixed, cover + tooth, cover, tooth
     # The 56 mm centre spacing comes from the fixed-pad chair experiment.
     # Fold both ends of each metal strip through its own pocket. One underside
     # groove per pole lets its lead leave the headward edge without crossing a rail.
