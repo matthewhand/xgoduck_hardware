@@ -32,3 +32,5 @@ The [plain guard](print/plain-protective-cover.stl) uses the same top-entry latc
 ![Flush receiver, plain protective guard and removable runner cover](rear-configurations.png)
 
 With the stock head, the receiver alone completed four of four simulated rolls. With the plain guard and both rails, three of four completed the roll and resumed walking. In the missed trial the robot turned 340.7° and fell during walk-off. These four settling times are a deterministic screen. [Recorded rolls](plain-guard-roll.json)
+
+For the concealed-head build, the [rounded everyday guard](../rounded-guard/README.md) retained the covered area and passed all four nominal get-ups and roll launches.

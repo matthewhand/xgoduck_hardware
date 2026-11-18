@@ -1,0 +1,163 @@
+{
+  "profile_sha256": "be9e2b2107b4199182b15b7a8ea06f8bb89a52b051432671d1c88292dd198499",
+  "trials": {
+    "stock": [
+      {
+        "settle_s": 0,
+        "robot_mass_g": 797.789,
+        "turn_deg": 362.0,
+        "min_up_dot": -0.994,
+        "end_roll_up_dot": 0.999,
+        "end_walk_up_dot": 1.0,
+        "subsequent_mode": "walk",
+        "subsequent_transitions": 0,
+        "pass_roll": true
+      },
+      {
+        "settle_s": 0.02,
+        "robot_mass_g": 797.789,
+        "turn_deg": 361.7,
+        "min_up_dot": -0.993,
+        "end_roll_up_dot": 0.999,
+        "end_walk_up_dot": 1.0,
+        "subsequent_mode": "walk",
+        "subsequent_transitions": 0,
+        "pass_roll": true
+      },
+      {
+        "settle_s": 0.1,
+        "robot_mass_g": 797.789,
+        "turn_deg": 361.6,
+        "min_up_dot": -0.995,
+        "end_roll_up_dot": 0.999,
+        "end_walk_up_dot": 1.0,
+        "subsequent_mode": "walk",
+        "subsequent_transitions": 0,
+        "pass_roll": true
+      },
+      {
+        "settle_s": 0.34,
+        "robot_mass_g": 797.789,
+        "turn_deg": 361.3,
+        "min_up_dot": -0.992,
+        "end_roll_up_dot": 0.999,
+        "end_walk_up_dot": 1.0,
+        "subsequent_mode": "walk",
+        "subsequent_transitions": 0,
+        "pass_roll": true
+      },
+      {
+        "settle_s": 0.76,
+        "robot_mass_g": 797.789,
+        "turn_deg": 361.0,
+        "min_up_dot": -0.992,
+        "end_roll_up_dot": 0.999,
+        "end_walk_up_dot": 1.0,
+        "subsequent_mode": "walk",
+        "subsequent_transitions": 0,
+        "pass_roll": true
+      },
+      {
+        "settle_s": 1.5,
+        "robot_mass_g": 797.789,
+        "turn_deg": 361.1,
+        "min_up_dot": -0.993,
+        "end_roll_up_dot": 1.0,
+        "end_walk_up_dot": 1.0,
+        "subsequent_mode": "walk",
+        "subsequent_transitions": 0,
+        "pass_roll": true
+      },
+      {
+        "settle_s": 2.5,
+        "robot_mass_g": 797.789,
+        "turn_deg": 361.5,
+        "min_up_dot": -0.992,
+        "end_roll_up_dot": 0.999,
+        "end_walk_up_dot": 1.0,
+        "subsequent_mode": "walk",
+        "subsequent_transitions": 0,
+        "pass_roll": true
+      }
+    ],
+    "rounded": [
+      {
+        "settle_s": 0,
+        "robot_mass_g": 825.737,
+        "turn_deg": 362.3,
+        "min_up_dot": -0.994,
+        "end_roll_up_dot": 0.999,
+        "end_walk_up_dot": 1.0,
+        "subsequent_mode": "walk",
+        "subsequent_transitions": 0,
+        "pass_roll": true
+      },
+      {
+        "settle_s": 0.02,
+        "robot_mass_g": 825.737,
+        "turn_deg": 361.8,
+        "min_up_dot": -0.992,
+        "end_roll_up_dot": 0.999,
+        "end_walk_up_dot": 1.0,
+        "subsequent_mode": "walk",
+        "subsequent_transitions": 0,
+        "pass_roll": true
+      },
+      {
+        "settle_s": 0.1,
+        "robot_mass_g": 825.737,
+        "turn_deg": 361.9,
+        "min_up_dot": -0.993,
+        "end_roll_up_dot": 0.999,
+        "end_walk_up_dot": 1.0,
+        "subsequent_mode": "walk",
+        "subsequent_transitions": 0,
+        "pass_roll": true
+      },
+      {
+        "settle_s": 0.34,
+        "robot_mass_g": 825.737,
+        "turn_deg": 317.3,
+        "min_up_dot": -0.992,
+        "end_roll_up_dot": 0.682,
+        "end_walk_up_dot": -0.084,
+        "subsequent_mode": "getup",
+        "subsequent_transitions": 2,
+        "pass_roll": false
+      },
+      {
+        "settle_s": 0.76,
+        "robot_mass_g": 825.737,
+        "turn_deg": 361.6,
+        "min_up_dot": -0.993,
+        "end_roll_up_dot": 0.999,
+        "end_walk_up_dot": 1.0,
+        "subsequent_mode": "walk",
+        "subsequent_transitions": 0,
+        "pass_roll": true
+      },
+      {
+        "settle_s": 1.5,
+        "robot_mass_g": 825.737,
+        "turn_deg": 361.9,
+        "min_up_dot": -0.994,
+        "end_roll_up_dot": 0.999,
+        "end_walk_up_dot": 1.0,
+        "subsequent_mode": "walk",
+        "subsequent_transitions": 0,
+        "pass_roll": true
+      },
+      {
+        "settle_s": 2.5,
+        "robot_mass_g": 825.737,
+        "turn_deg": 362.1,
+        "min_up_dot": -0.993,
+        "end_roll_up_dot": 0.999,
+        "end_walk_up_dot": 1.0,
+        "subsequent_mode": "walk",
+        "subsequent_transitions": 0,
+        "pass_roll": true
+      }
+    ]
+  }
+}

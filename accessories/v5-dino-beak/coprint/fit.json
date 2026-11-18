@@ -1,0 +1,43 @@
+{
+  "upper": {
+    "roots": 8,
+    "solid_tpu_volume_cm3": 0.26736806280306297,
+    "displaced_rigid_volume_cm3": 0.07043738863517644,
+    "minimum_intersection_outward_shift_065mm_mm3": 2.6895689371010834,
+    "minimum_intersection_fore_aft_shift_065mm_mm3": 1.5835132902516706
+  },
+  "lower": {
+    "roots": 8,
+    "solid_tpu_volume_cm3": 0.206876388487009,
+    "displaced_rigid_volume_cm3": 0.07310085976436675,
+    "minimum_intersection_outward_shift_065mm_mm3": 3.2174124487671465,
+    "minimum_intersection_fore_aft_shift_065mm_mm3": 1.835466481849912
+  },
+  "upper_teeth_to_moving_chin_parts_lateral_bound_mm": 23.990999999999996,
+  "minimum_clearance_mm_capped_at_2": {
+    "upper teeth vs upper pad": 0.7244349235213805,
+    "upper teeth vs face": 1.0610095214843724,
+    "upper teeth vs ToF housing": 2.0,
+    "lower teeth vs lower pad": 1.9418154907226537,
+    "opposing teeth": 0.7164738206066864,
+    "upper teeth vs lower shell": 2.0,
+    "upper teeth vs lower pad": 2.0,
+    "lower teeth vs upper shell": 0.9492887355834951,
+    "lower teeth vs upper pad": 2.0,
+    "lower teeth vs face": 2.0,
+    "lower teeth vs ToF housing": 2.0
+  },
+  "sampled_jaw_deg": [
+    0,
+    30,
+    0.25
+  ],
+  "lower_chin_compatibility_mm_capped_at_50": {
+    "hatch excavation": 23.802067844132306,
+    "lid": 24.04828528190731,
+    "steel targets": 28.36304733275323,
+    "beard": 27.367662560036067,
+    "magnets": 28.590731959850206
+  },
+  "nominal_mass_change_g": 0.3968474434686345
+}

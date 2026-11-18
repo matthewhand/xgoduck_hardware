@@ -69,3 +69,5 @@ python verify-fit.py
 ```
 
 All exports use printer coordinates with the lowest point at Z = 0. Choose a separate output directory to keep an alternative squeeze setting. If the jaws need different settings, generate both sets and select the matching upper and lower files. For assembly-space meshes, use `build()` in the generator. The verifier checks each supplied binary STL for positive volume, one closed component and two incident triangles per undirected edge, then measures the two fitted cuffs throughout the nominal jaw sweep.
+
+For a screw-free permanent tooth set, the [co-printed TPU jaws](coprint/README.md) include mechanically keyed teeth and a two-material fit coupon.

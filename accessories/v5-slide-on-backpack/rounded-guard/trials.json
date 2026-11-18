@@ -1,0 +1,247 @@
+{
+  "before": {
+    "cases": {
+      "back": {
+        "mass_g": 815.55,
+        "upright": false,
+        "transitions": 2,
+        "fell": true,
+        "forward_m": 0.16384699852051904,
+        "yaw_deg": 227.63765676445007,
+        "peak_tilt_deg": 105.8110305409502,
+        "both_feet": 1,
+        "recovered_s": null,
+        "resumed_forward_m": null,
+        "resumed_both_feet": 0,
+        "pass": false
+      },
+      "right": {
+        "mass_g": 815.55,
+        "upright": false,
+        "transitions": 2,
+        "fell": true,
+        "forward_m": 0.031058701255535764,
+        "yaw_deg": 44.541117488194914,
+        "peak_tilt_deg": 102.26699527307602,
+        "both_feet": 0,
+        "recovered_s": null,
+        "resumed_forward_m": null,
+        "resumed_both_feet": 0,
+        "pass": false
+      },
+      "front": {
+        "mass_g": 815.55,
+        "upright": true,
+        "transitions": 3,
+        "fell": true,
+        "forward_m": 1.9574819365628966,
+        "yaw_deg": -4.2857392981379006,
+        "peak_tilt_deg": 113.94574273264895,
+        "both_feet": 44,
+        "recovered_s": 3.0,
+        "resumed_forward_m": 2.1252825930124333,
+        "resumed_both_feet": 39,
+        "pass": true
+      },
+      "left": {
+        "mass_g": 815.55,
+        "upright": true,
+        "transitions": 3,
+        "fell": true,
+        "forward_m": -1.072651523797139,
+        "yaw_deg": 122.71744337933019,
+        "peak_tilt_deg": 104.71133970741097,
+        "both_feet": 42,
+        "recovered_s": 2.56,
+        "resumed_forward_m": 2.1928026736815256,
+        "resumed_both_feet": 40,
+        "pass": true
+      },
+      "walk": {
+        "mass_g": 815.55,
+        "upright": true,
+        "transitions": 0,
+        "fell": false,
+        "forward_m": 2.509534021427721,
+        "yaw_deg": 7.00402665336604,
+        "peak_tilt_deg": 3.6611773925565165,
+        "both_feet": 47,
+        "recovered_s": null,
+        "resumed_forward_m": null,
+        "resumed_both_feet": 0,
+        "pass": true
+      }
+    },
+    "rolls": [
+      {
+        "settle_s": 0.2,
+        "robot_mass_g": 815.547,
+        "turn_deg": 351.1,
+        "min_up_dot": -0.993,
+        "end_roll_up_dot": 0.986,
+        "end_walk_up_dot": 1.0,
+        "subsequent_mode": "walk",
+        "subsequent_transitions": 0,
+        "pass_roll": true
+      },
+      {
+        "settle_s": 0.5,
+        "robot_mass_g": 815.547,
+        "turn_deg": 357.9,
+        "min_up_dot": -0.995,
+        "end_roll_up_dot": 0.999,
+        "end_walk_up_dot": 1.0,
+        "subsequent_mode": "walk",
+        "subsequent_transitions": 0,
+        "pass_roll": true
+      },
+      {
+        "settle_s": 1.0,
+        "robot_mass_g": 815.547,
+        "turn_deg": 361.8,
+        "min_up_dot": -0.994,
+        "end_roll_up_dot": 0.999,
+        "end_walk_up_dot": 1.0,
+        "subsequent_mode": "walk",
+        "subsequent_transitions": 0,
+        "pass_roll": true
+      },
+      {
+        "settle_s": 2.0,
+        "robot_mass_g": 815.547,
+        "turn_deg": 358.6,
+        "min_up_dot": -0.993,
+        "end_roll_up_dot": 1.0,
+        "end_walk_up_dot": 1.0,
+        "subsequent_mode": "walk",
+        "subsequent_transitions": 0,
+        "pass_roll": true
+      }
+    ]
+  },
+  "after": {
+    "cases": {
+      "back": {
+        "mass_g": 825.74,
+        "upright": true,
+        "transitions": 3,
+        "fell": true,
+        "forward_m": -2.0107410383742597,
+        "yaw_deg": 480.32057334134197,
+        "peak_tilt_deg": 113.98332124413575,
+        "both_feet": 41,
+        "recovered_s": 3.18,
+        "resumed_forward_m": 2.0611904744927476,
+        "resumed_both_feet": 38,
+        "pass": true
+      },
+      "right": {
+        "mass_g": 825.74,
+        "upright": true,
+        "transitions": 3,
+        "fell": true,
+        "forward_m": 0.6129480460127472,
+        "yaw_deg": -65.43605604756551,
+        "peak_tilt_deg": 114.61205411586195,
+        "both_feet": 41,
+        "recovered_s": 3.42,
+        "resumed_forward_m": 2.0372609254794485,
+        "resumed_both_feet": 38,
+        "pass": true
+      },
+      "front": {
+        "mass_g": 825.74,
+        "upright": true,
+        "transitions": 3,
+        "fell": true,
+        "forward_m": 1.9094117350605426,
+        "yaw_deg": -0.7877234743173739,
+        "peak_tilt_deg": 113.10988147434324,
+        "both_feet": 44,
+        "recovered_s": 3.1,
+        "resumed_forward_m": 2.078836609148115,
+        "resumed_both_feet": 39,
+        "pass": true
+      },
+      "left": {
+        "mass_g": 825.74,
+        "upright": true,
+        "transitions": 3,
+        "fell": true,
+        "forward_m": -1.1601079759928348,
+        "yaw_deg": 124.87189353346217,
+        "peak_tilt_deg": 104.69759867422323,
+        "both_feet": 41,
+        "recovered_s": 2.56,
+        "resumed_forward_m": 2.1372088325827856,
+        "resumed_both_feet": 40,
+        "pass": true
+      },
+      "walk": {
+        "mass_g": 825.74,
+        "upright": true,
+        "transitions": 0,
+        "fell": false,
+        "forward_m": 2.463169121131582,
+        "yaw_deg": 3.8442826830686214,
+        "peak_tilt_deg": 3.2309020713289724,
+        "both_feet": 46,
+        "recovered_s": null,
+        "resumed_forward_m": null,
+        "resumed_both_feet": 0,
+        "pass": true
+      }
+    },
+    "rolls": [
+      {
+        "settle_s": 0.2,
+        "robot_mass_g": 825.737,
+        "turn_deg": 358.1,
+        "min_up_dot": -0.991,
+        "end_roll_up_dot": 0.999,
+        "end_walk_up_dot": 1.0,
+        "subsequent_mode": "walk",
+        "subsequent_transitions": 0,
+        "pass_roll": true
+      },
+      {
+        "settle_s": 0.5,
+        "robot_mass_g": 825.737,
+        "turn_deg": 354.2,
+        "min_up_dot": -0.993,
+        "end_roll_up_dot": 0.992,
+        "end_walk_up_dot": 1.0,
+        "subsequent_mode": "walk",
+        "subsequent_transitions": 0,
+        "pass_roll": true
+      },
+      {
+        "settle_s": 1.0,
+        "robot_mass_g": 825.737,
+        "turn_deg": 355.8,
+        "min_up_dot": -0.993,
+        "end_roll_up_dot": 0.996,
+        "end_walk_up_dot": 1.0,
+        "subsequent_mode": "walk",
+        "subsequent_transitions": 0,
+        "pass_roll": true
+      },
+      {
+        "settle_s": 2.0,
+        "robot_mass_g": 825.737,
+        "turn_deg": 357.0,
+        "min_up_dot": -0.993,
+        "end_roll_up_dot": 0.997,
+        "end_walk_up_dot": 1.0,
+        "subsequent_mode": "walk",
+        "subsequent_transitions": 0,
+        "pass_roll": true
+      }
+    ]
+  },
+  "policies_sha256": {
+    "walk": "1fc079512fe3fe23e274e7a9d8c9ad007e88439f0385ecf20c9596e57886249f",
+    "getup": "0aa9466310dddc17438e42a28d9fa20bd869b4ee0568c7b6d5bfef85e53cbb94",
+    "roulade": "4244090442d4025817d3c041174206ab4f91bc07294ef5fbc4e5643ffdb76e1a"
+  }
+}
