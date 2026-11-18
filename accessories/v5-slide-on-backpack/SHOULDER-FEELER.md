@@ -1,5 +1,7 @@
 # Right-shoulder feeler
 
+The [Grove Vision AI V2 camera cassette](grove-shoulder/README.md) uses the same deck and routes a removable cable back to the backpack.
+
 This removable cassette carries a soft centre stylus and two rounded lobes that fan out like a duck foot. The folded pose leaves the centre pad leading for an upright pushbutton. Each side lobe pivots by hand around an M2 screw. The open illustration uses 38° on each side. Screw friction sets the pose. An autonomous scanner would need sensors, actuation and control.
 
 ![V5 with the feeler fitted, open fan detail, cassette removed and simulated view of the button](figures/shoulder-feeler.png)
