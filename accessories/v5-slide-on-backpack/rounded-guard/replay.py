@@ -25,7 +25,7 @@ def font(size, bold=False):
     return ImageFont.load_default()
 
 
-def record(profile, case, settle=None):
+def record(profile, case, settle=None, *, configure=None, release_angle=90):
     frames = {}
     rigs = []
 
@@ -39,12 +39,15 @@ def record(profile, case, settle=None):
             rigs.append(self)
 
         def tick(self, *args, **kwargs):
+            if settle is None and release_angle!=90 and self.data.time==0:
+                self.mj.mju_axisAngle2Quat(self.data.qpos[self.root+3:self.root+7],
+                    np.asarray(CHECKS['FALLS'][case],dtype=float),np.deg2rad(release_angle))
             sample(self, self.recovery.phase)
             result = super().tick(*args, **kwargs)
             sample(self, self.recovery.phase)
             return result
 
-    apply = TEST['configuration'](profile)
+    apply = configure if configure is not None else TEST['configuration'](profile)
     if settle is None:
         def create(vx, yaw, **kwargs):
             kwargs['configure'] = apply
@@ -82,7 +85,7 @@ def verify(result, published):
         raise ValueError(f'Replay diverged at {key}: expected {expected}, got {actual}')
 
 
-def model(receiver, track, cover):
+def model(receiver, track, cover, *, add_visual=None):
     from walk_sim import load_recovery_scene
     def show(spec):
         body = spec.body('trunk_base')
@@ -95,6 +98,8 @@ def model(receiver, track, cover):
                           userface=mesh.tri_verts.ravel())
             body.add_geom(name='render_'+name, type=mj.mjtGeom.mjGEOM_MESH, meshname='render_'+name,
                           mass=0, contype=0, conaffinity=0, group=1, rgba=color)
+        if add_visual is not None:
+            add_visual(spec)
     return load_recovery_scene(mj, show)
 
 
@@ -130,15 +135,16 @@ def status(row, phase, current, last, rolling):
             'roulade':'Roll policy'}.get(phase, phase)
 
 
-def film(panels, profiles, events, results, target, before_only=False):
-    labels = ['Original guard', 'Original guard' if before_only else 'Rounded guard']
+def film(panels, profiles, events, results, target, before_only=False, *, reader=record,
+         labels=None, release_angle=90):
+    labels = labels or ['Original guard', 'Original guard' if before_only else 'Rounded guard']
     typeface, titleface = font(14), font(16, True)
     animation, durations, verified = [], [], []
     for case, settle in events:
         rolling = settle is not None
         shots = []
         for side, panel, prof in zip(('before', 'after'), panels, profiles):
-            row, samples, names = record(prof, case, settle)
+            row, samples, names = reader(prof, case, settle)
             assert names == panel.names
             if results is not None:
                 expected = results[side]['cases'][case] if not rolling else next(
@@ -150,15 +156,18 @@ def film(panels, profiles, events, results, target, before_only=False):
         # Show every 100 ms until the 8 s gate, then explicitly jump to the final
         # 20 s state. Roll playback instead spans every phase, including walkoff.
         slots = list(range(0, last+1 if rolling else min(last,420)+1, 5))
+        if rolling:
+            slots=sorted(set([*slots,round(settle/.02)]))
         if last != slots[-1]:
             slots.append(last)
         title = (f'Forward roll   ·   launch at {settle:.2f} s' if rolling else
-                 f'{case.capitalize()} fall   ·   90° release')
-        for slot in slots:
+                 f'{case.capitalize()} fall   ·   {release_angle}° release')
+        for frame_index,slot in enumerate(slots):
             frame = Image.new('RGB', (652, 274), '#132128')
             draw = ImageDraw.Draw(frame)
             draw.text((7,3),title,fill='#eaf5f0',font=titleface)
-            draw.text((643,5),f'{slot*.02:.1f} s',fill='#c1d6d1',font=typeface,anchor='ra')
+            clock=f'{slot*.02:.2f}' if slot%5 else f'{slot*.02:.1f}'
+            draw.text((643,5),f'{clock} s',fill='#c1d6d1',font=typeface,anchor='ra')
             for i,(panel,(row,samples)) in enumerate(zip(panels,shots)):
                 x=328*i
                 q,phase=samples[slot]
@@ -166,7 +175,7 @@ def film(panels, profiles, events, results, target, before_only=False):
                 draw.text((x+6,244),labels[i],font=typeface,fill='#e8f4ef')
                 draw.text((x+318,245),status(row,phase,slot,last,rolling),font=typeface,fill='#a7c6bf',anchor='ra')
             animation.append(frame)
-            durations.append(1300 if slot==last else 380 if slot==0 else 100)
+            durations.append(1300 if slot==last else 380 if slot==0 else min(100,(slots[frame_index+1]-slot)*20))
         verified.append(dict(case=case,settle_s=settle,frames=len(slots),source_slots=last+1,
                              compared_to_trials=results is not None,
                              outcomes={side:shot[0] for side,shot in zip(('before','after'),shots)}))

@@ -10,6 +10,8 @@ The STL is in millimetres with the rail side toward the bed. Check the rail groo
 
 ## Matched qualification
 
+For the co-printed upper and lower jaws, see the [matched teeth and guard trials](combined/README.md). That comparison uses the rounded cover here as its baseline.
+
 Both builds use the concealed head mounts with their inserts installed, the recessed rear receiver, two removable rail cartridges, no decorative accessories, the same stock ONNX policies and an identical level floor. Each get-up started at 90°. The trial lasted 20 seconds and required a return to walking and sustained forward progress.
 
 | Start | Original guard | Rounded guard | Travel after recovery, rounded |

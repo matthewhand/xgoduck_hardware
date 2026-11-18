@@ -1,0 +1,149 @@
+{
+  "file": "teeth-guard.webp",
+  "bytes": 987452,
+  "events": [
+    {
+      "case": "right",
+      "settle_s": null,
+      "frames": 86,
+      "source_slots": 1001,
+      "compared_to_trials": true,
+      "outcomes": {
+        "before": {
+          "mass_g": 825.22,
+          "upright": false,
+          "transitions": 2,
+          "fell": true,
+          "forward_m": 0.03064545028824162,
+          "yaw_deg": 48.62488713492645,
+          "peak_tilt_deg": 102.12686539423338,
+          "both_feet": 0,
+          "recovered_s": null,
+          "resumed_forward_m": null,
+          "resumed_both_feet": 0,
+          "pass": false
+        },
+        "after": {
+          "mass_g": 825.46,
+          "upright": true,
+          "transitions": 3,
+          "fell": true,
+          "forward_m": 0.9371553107203479,
+          "yaw_deg": -53.349064093117036,
+          "peak_tilt_deg": 112.94744927847393,
+          "both_feet": 40,
+          "recovered_s": 3.58,
+          "resumed_forward_m": 2.0077559738923725,
+          "resumed_both_feet": 37,
+          "pass": true
+        }
+      },
+      "phase_transitions": {
+        "before": [
+          {
+            "s": 0.0,
+            "policy_phase": "walk"
+          },
+          {
+            "s": 0.16,
+            "policy_phase": "default_pose"
+          },
+          {
+            "s": 1.18,
+            "policy_phase": "getup"
+          }
+        ],
+        "after": [
+          {
+            "s": 0.0,
+            "policy_phase": "walk"
+          },
+          {
+            "s": 0.16,
+            "policy_phase": "default_pose"
+          },
+          {
+            "s": 1.18,
+            "policy_phase": "getup"
+          },
+          {
+            "s": 3.6,
+            "policy_phase": "walk"
+          }
+        ]
+      },
+      "release_angle_deg": 95
+    },
+    {
+      "case": "roll",
+      "settle_s": 0.34,
+      "frames": 48,
+      "source_slots": 228,
+      "compared_to_trials": true,
+      "outcomes": {
+        "before": {
+          "settle_s": 0.34,
+          "robot_mass_g": 825.222,
+          "turn_deg": 361.8,
+          "min_up_dot": -0.991,
+          "end_roll_up_dot": 0.999,
+          "end_walk_up_dot": 1.0,
+          "subsequent_mode": "walk",
+          "subsequent_transitions": 0,
+          "pass_roll": true
+        },
+        "after": {
+          "settle_s": 0.34,
+          "robot_mass_g": 825.455,
+          "turn_deg": 361.9,
+          "min_up_dot": -0.992,
+          "end_roll_up_dot": 0.999,
+          "end_walk_up_dot": 1.0,
+          "subsequent_mode": "walk",
+          "subsequent_transitions": 0,
+          "pass_roll": true
+        }
+      },
+      "phase_transitions": {
+        "before": [
+          {
+            "s": 0.0,
+            "policy_phase": "walk"
+          },
+          {
+            "s": 0.34,
+            "policy_phase": "roulade"
+          },
+          {
+            "s": 2.04,
+            "policy_phase": "walk"
+          }
+        ],
+        "after": [
+          {
+            "s": 0.0,
+            "policy_phase": "walk"
+          },
+          {
+            "s": 0.34,
+            "policy_phase": "roulade"
+          },
+          {
+            "s": 2.04,
+            "policy_phase": "walk"
+          }
+        ]
+      },
+      "roll_launch_slot": 17
+    }
+  ],
+  "inputs_sha256": {
+    "rounded-guard/rounded-profile.json": "049ffc7c9bacede4b49d3f515b490e613c0ee900cd0773f4cc28e062396dce3b",
+    "combined/guard-profile.json": "57f505f834874abe4f702a97fbd546ee6ef8a99f3fde36f3fd09c560e5f19276",
+    "combined/head-profile.json": "5326b92c1ec5a9fb3a72f279a65740383cbc0083d9b1f52cf702e5c1ce93649b",
+    "combined/qualification-results.json": "74806a4417789ff4820b4e7c3b8575c10fe7dfdadae8bb12bfcf058038bfcb4a",
+    "rounded-guard/fit.json": "779b9cbd55ecc3d465ed657b105878fe014e2bb92a882d0651a7922a9f794dcc",
+    "combined/fit.json": "cfb9b1c6bc6224124b8bb4c8112e97f90ea53ef1b63dfab6971f1960c66cf377"
+  },
+  "sha256": "1db7742f2bfcd83a2877682aba60a6ac71c5aae4492e053ff67819e0fb4377fd"
+}

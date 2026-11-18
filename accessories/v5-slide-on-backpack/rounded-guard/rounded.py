@@ -55,10 +55,10 @@ def profile(cover):
                 collider_hulls_m=collider_vertices(cover,np.zeros(3),'mount')+collider_vertices(track,np.zeros(3),'mount'))
 
 
-def export(parameters):
+def export(parameters, output=HERE, profile_name='rounded-profile.json'):
     fixed,receiver,track,plain,rigid,tooth=base()
     cover,extra=rounded(*parameters)
-    path=HERE/'rounded-protective-cover.stl'
+    path=output/'rounded-protective-cover.stl'
     bed=cover.simplify(.002).rotate((180,0,0))
     bed=bed.translate((0,0,-bed.bounding_box()[2]))
     # The section/extrusion shares coplanar edges with the original plate.
@@ -99,8 +99,8 @@ def export(parameters):
                 stop_interference_at_half_mm3=stop,original_material_removed_mm3=removed,
                 blocked_opening_area_mm2=blocked,extra_material_at_release_mm3=latch,
                 added_print_mass_g=round(added.volume()*.00124,3))
-    (HERE/'fit.json').write_text(json.dumps(report,indent=2)+'\n')
-    (HERE/'rounded-profile.json').write_text(json.dumps(profile(cover),separators=(',',':'))+'\n')
+    (output/'fit.json').write_text(json.dumps(report,indent=2)+'\n')
+    (output/profile_name).write_text(json.dumps(profile(cover),separators=(',',':'))+'\n')
     return report
 
 
