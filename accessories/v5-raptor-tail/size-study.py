@@ -21,7 +21,7 @@ UP = np.array([AXIS[2], 0, -AXIS[0]])
 LEAN = np.deg2rad(-25)
 
 
-def build(spec, length_mm, hinges, mass_factor, *, draped=False):
+def build(spec, length_mm, hinges, mass_factor, *, draped=False, width_factor=1.):
     if length_mm == 0:
         return
     configure(spec, PROFILE, 'locked')
@@ -58,6 +58,9 @@ def build(spec, length_mm, hinges, mass_factor, *, draped=False):
         for band, (lo,hi) in enumerate(zip(cuts,cuts[1:])):
             stations = np.array([lo,(lo+hi)/2,hi])
             ry,rz = [np.interp(stations,SECTIONS[:,0],SECTIONS[:,i]) for i in (1,2)]
+            # Keep the 6 mm root pin landing and the rounded tip. Taper the
+            # broad cheeks of the shell and recalculate the wall and core mass.
+            ry = np.interp(stations,sections,SECTIONS[:,1]*[1,width_factor,width_factor,width_factor,1])
             full = np.pi*ry*rz
             hollow = np.pi*(ry-.0016)*(rz-.0016)
             mass = (hi-lo)*length*1240 * np.dot([1,4,1],full-.92*hollow)/6

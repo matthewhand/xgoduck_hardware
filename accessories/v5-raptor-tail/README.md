@@ -49,6 +49,8 @@ The stock-frame origin is the upstream enclosure STL origin. Positive Y points t
 
 Duck Lab runs the same stock policies on the bare Duck, an installed tail with locked joints and the same tail with passive joints. Inspect the per-case walking, turning and directional get-up outcomes before choosing a training variant. [Stock-policy simulation results](stock-policy-screen.json) · [CAD-derived physics profile](tail-physics.json)
 
+The training notes give the reproduction commands, running criteria and known right-side floor-contact failure. [Walking, recovery and running training](MOTION-AND-TRAINING.md)
+
 ## Reproduce the files
 
 Install NumPy and manifold3d for CAD generation and geometric checks. The render additionally uses the Duck Lab walking model, MuJoCo, SciPy, Numba and Pillow. Run these commands from the hardware fork.
@@ -58,3 +60,5 @@ python accessories/v5-raptor-tail/raptor-tail.py accessories/v5-raptor-tail/prin
 python accessories/v5-raptor-tail/check-fit.py
 python accessories/v5-raptor-tail/render-tail.py ../xgoduck_runtime_arduino
 ```
+
+The later [167 mm roll-shoe and removable-rail trials](RECOVERY-AND-REMOVAL.md) tested a revised mount and wider range of lean targets.

@@ -1,0 +1,19 @@
+{
+  "clearance_per_face_mm": 0.25,
+  "stack_pitch_mm": 6.2,
+  "overlap_mm3": {
+    "deck vs enclosure/cover/yoke": -0.0,
+    "first vs deck": 0.0,
+    "second vs first": 0.0,
+    "pin vs seated first and deck": 0.0,
+    "pin vs seated second": 0.0
+  },
+  "stop_overlap_at_1mm_mm3": 21.008,
+  "pin_overlap_at_1mm_mm3": 11.855,
+  "solid_print_mass_g_at_1p24": {
+    "upper-deck": 7.584,
+    "stack-cartridge": 6.404,
+    "side-pin": 0.137,
+    "cartridge-pin": 0.117
+  }
+}

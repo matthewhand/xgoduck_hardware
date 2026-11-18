@@ -1,0 +1,18 @@
+{
+  "registered_head_hardware_gap_mm": 2.052,
+  "jaw_sweep_deg": [
+    0,
+    30,
+    0.25
+  ],
+  "minimum_clearance_mm_capped_at_10": 9.194,
+  "assumed_optical_half_angle_deg": 45,
+  "cone_intersection_mm3": {
+    "camera": 0.0,
+    "tof": 0.0
+  },
+  "accessory_plastic_g_at_1p2": {
+    "mask": 2.79,
+    "beard": 1.46
+  }
+}

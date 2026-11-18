@@ -1,0 +1,81 @@
+{
+  "grasp_angle_deg": 4.5,
+  "open_angle_deg": 26.0,
+  "variants": {
+    "pointer": {
+      "estimated_mass_g": 6.12,
+      "cg_mm": [
+        0.016,
+        -73.368,
+        7.566
+      ],
+      "station_support_projection_y_mm": [
+        -82.0,
+        -66.0
+      ],
+      "upper_pad_overlap_mm3": 19.227,
+      "lower_pad_overlap_mm3": 43.791,
+      "rigid_closure_mm3": 0.0,
+      "upper_rigid_dip_mm3": 0.0,
+      "entry_with_stand_mm3": 0.0,
+      "station_lift_mm3": 0.0,
+      "exit_mm3": 0.0,
+      "tip_first_margin_by_downward_pitch_mm": {
+        "10": -3.096,
+        "20": 1.992,
+        "30": 3.793,
+        "40": 5.57
+      }
+    },
+    "fork": {
+      "estimated_mass_g": 6.922,
+      "cg_mm": [
+        0.015,
+        -76.454,
+        8.055
+      ],
+      "station_support_projection_y_mm": [
+        -82.0,
+        -66.0
+      ],
+      "upper_pad_overlap_mm3": 19.227,
+      "lower_pad_overlap_mm3": 43.791,
+      "rigid_closure_mm3": 0.0,
+      "upper_rigid_dip_mm3": 0.0,
+      "entry_with_stand_mm3": 0.0,
+      "station_lift_mm3": 0.0,
+      "exit_mm3": 0.0,
+      "tip_first_margin_by_downward_pitch_mm": {
+        "10": -4.728,
+        "20": 2.073,
+        "30": 4.382,
+        "40": 6.603
+      }
+    },
+    "horn": {
+      "estimated_mass_g": 6.728,
+      "cg_mm": [
+        0.4,
+        -76.253,
+        9.65
+      ],
+      "station_support_projection_y_mm": [
+        -82.0,
+        -66.0
+      ],
+      "upper_pad_overlap_mm3": 19.227,
+      "lower_pad_overlap_mm3": 43.791,
+      "rigid_closure_mm3": 0.0,
+      "upper_rigid_dip_mm3": 0.0,
+      "entry_with_stand_mm3": 0.0,
+      "station_lift_mm3": 0.0,
+      "exit_mm3": 0.0,
+      "tip_first_margin_by_downward_pitch_mm": {
+        "10": -6.488,
+        "20": 2.815,
+        "30": 9.633,
+        "40": 11.598
+      }
+    }
+  }
+}

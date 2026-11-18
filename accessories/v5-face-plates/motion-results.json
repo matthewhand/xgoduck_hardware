@@ -1,0 +1,172 @@
+{
+  "conditions": "20 s flat-floor deterministic run per configuration and start pose; neutral fixed jaw, 0.2 m/s forward command, 90 degree fall poses, 50 Hz policy / 200 Hz physics.",
+  "policies_sha256": {
+    "xgoduck_walk.onnx": "1fc079512fe3fe23e274e7a9d8c9ad007e88439f0385ecf20c9596e57886249f",
+    "xgoduck_getup.onnx": "0aa9466310dddc17438e42a28d9fa20bd869b4ee0568c7b6d5bfef85e53cbb94"
+  },
+  "profile_sha256": "4ba8c255cb361ed4d4f341770eefa1ecb1d1621feeaf3a5a7e06c09c7e728ef7",
+  "trials": {
+    "stock": {
+      "walk": {
+        "mass_g": 797.79,
+        "upright": true,
+        "transitions": 0,
+        "fell": false,
+        "forward_m": 2.5946332436565904,
+        "yaw_deg": 9.815322616693718,
+        "peak_tilt_deg": 3.729246948018232,
+        "both_feet": 47,
+        "recovered_s": null,
+        "resumed_forward_m": null,
+        "resumed_both_feet": 0,
+        "passed": true,
+        "accessory_floor_contact_s": {}
+      },
+      "back": {
+        "mass_g": 797.79,
+        "upright": true,
+        "transitions": 3,
+        "fell": true,
+        "forward_m": -1.5446838779661416,
+        "yaw_deg": 162.8838047783047,
+        "peak_tilt_deg": 112.28703318622968,
+        "both_feet": 43,
+        "recovered_s": 2.76,
+        "resumed_forward_m": 2.2339115866390635,
+        "resumed_both_feet": 40,
+        "passed": true,
+        "accessory_floor_contact_s": {}
+      },
+      "front": {
+        "mass_g": 797.79,
+        "upright": true,
+        "transitions": 3,
+        "fell": true,
+        "forward_m": 1.5345927987959733,
+        "yaw_deg": 395.04934268529695,
+        "peak_tilt_deg": 116.8709051971548,
+        "both_feet": 42,
+        "recovered_s": 2.92,
+        "resumed_forward_m": 2.215348672725012,
+        "resumed_both_feet": 40,
+        "passed": true,
+        "accessory_floor_contact_s": {}
+      },
+      "left": {
+        "mass_g": 797.79,
+        "upright": true,
+        "transitions": 3,
+        "fell": true,
+        "forward_m": -1.1773897538635547,
+        "yaw_deg": 128.29302947106314,
+        "peak_tilt_deg": 105.33102592947387,
+        "both_feet": 42,
+        "recovered_s": 2.56,
+        "resumed_forward_m": 2.2696770883062882,
+        "resumed_both_feet": 40,
+        "passed": true,
+        "accessory_floor_contact_s": {}
+      },
+      "right": {
+        "mass_g": 797.79,
+        "upright": true,
+        "transitions": 3,
+        "fell": true,
+        "forward_m": 1.2666370239619062,
+        "yaw_deg": 315.15888236109,
+        "peak_tilt_deg": 107.94539379248936,
+        "both_feet": 41,
+        "recovered_s": 2.86,
+        "resumed_forward_m": 2.2232741011058605,
+        "resumed_both_feet": 40,
+        "passed": true,
+        "accessory_floor_contact_s": {}
+      }
+    },
+    "mask_and_beard": {
+      "walk": {
+        "mass_g": 807.24,
+        "upright": true,
+        "transitions": 0,
+        "fell": false,
+        "forward_m": 2.64967639606568,
+        "yaw_deg": 19.37494776446461,
+        "peak_tilt_deg": 3.969545156436261,
+        "both_feet": 47,
+        "recovered_s": null,
+        "resumed_forward_m": null,
+        "resumed_both_feet": 0,
+        "passed": true,
+        "accessory_floor_contact_s": {}
+      },
+      "back": {
+        "mass_g": 807.24,
+        "upright": true,
+        "transitions": 3,
+        "fell": true,
+        "forward_m": -1.629693579691637,
+        "yaw_deg": 165.09125809042504,
+        "peak_tilt_deg": 110.56625465975318,
+        "both_feet": 43,
+        "recovered_s": 2.74,
+        "resumed_forward_m": 2.284907804927175,
+        "resumed_both_feet": 41,
+        "passed": true,
+        "accessory_floor_contact_s": {
+          "mask": 0.055
+        }
+      },
+      "front": {
+        "mass_g": 807.24,
+        "upright": true,
+        "transitions": 3,
+        "fell": true,
+        "forward_m": 2.130461912358936,
+        "yaw_deg": 7.2188210246969895,
+        "peak_tilt_deg": 106.64840466103028,
+        "both_feet": 43,
+        "recovered_s": 2.66,
+        "resumed_forward_m": 2.305687654937165,
+        "resumed_both_feet": 41,
+        "passed": true,
+        "accessory_floor_contact_s": {
+          "mask": 0.28
+        }
+      },
+      "left": {
+        "mass_g": 807.24,
+        "upright": true,
+        "transitions": 3,
+        "fell": true,
+        "forward_m": -1.3303707478234421,
+        "yaw_deg": 134.4773097899333,
+        "peak_tilt_deg": 102.804957910412,
+        "both_feet": 41,
+        "recovered_s": 2.58,
+        "resumed_forward_m": 2.2985409733731457,
+        "resumed_both_feet": 40,
+        "passed": true,
+        "accessory_floor_contact_s": {
+          "mask": 0.15
+        }
+      },
+      "right": {
+        "mass_g": 807.24,
+        "upright": true,
+        "transitions": 3,
+        "fell": true,
+        "forward_m": 1.8863912630660562,
+        "yaw_deg": 350.3370591315112,
+        "peak_tilt_deg": 105.23049833823593,
+        "both_feet": 42,
+        "recovered_s": 2.84,
+        "resumed_forward_m": 2.276589739067405,
+        "resumed_both_feet": 40,
+        "passed": true,
+        "accessory_floor_contact_s": {
+          "mask": 0.135
+        }
+      }
+    }
+  }
+}

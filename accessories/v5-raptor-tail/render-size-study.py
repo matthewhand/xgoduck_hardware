@@ -12,7 +12,12 @@ study=runpy.run_path(str(HERE/'size-study.py'))
 
 
 def replay(sim_type, output, case):
-    if case in ('draped','draped-walk'):
+    recovery = case == 'recovery'
+    if recovery:
+        make_rig=runpy.run_path(str(HERE/'recovery-study.py'))['make_rig']
+        rigs=[make_rig(sim_type,revised=revised,target=12) for revised in (False,True)]
+        titles=['Before · original curved tail','After · narrower tail + roll shoes']
+    elif case in ('draped','draped-walk'):
         posture=runpy.run_path(str(HERE/'posture-study.py'))['simulation']
         old=posture(sim_type,132,None,-25,0,False)
         new=posture(sim_type,167,16 if case=='draped' else 12,-48,-65,True,.45)
@@ -35,28 +40,39 @@ def replay(sim_type, output, case):
                 # Show the registered printed mount through its collision mesh.
                 rig.model.geom_group[g]=1
                 rig.model.geom_rgba[g]=[.38,.46,.43,1]
+            elif recovery and name.startswith('recovery_rail_'):
+                rig.model.geom_rgba[g]=[.97,.57,.15,1]
     renderers=[]
     frames=[]
     try:
         renderers=[mj.Renderer(r.model,height=264,width=396) for r in rigs]
         font=ImageFont.truetype('segoeui.ttf',17) if Path('C:/Windows/Fonts/segoeui.ttf').exists() else ImageFont.load_default()
-        for slot in range(400):
+        # Render from a second MjData so sampling a frame cannot perturb the solver.
+        snapshots=[mj.MjData(rig.model) for rig in rigs] if recovery else [rig.data for rig in rigs]
+        for slot in range(600 if recovery else 400):
             for rig in rigs:
                 if case=='walk':
                     rig.obs[0,51]=study['LEAN']*np.clip((rig.data.time-2)/1.5,0,1)
-                rig.tick()
+                if slot or not recovery:
+                    rig.tick()
             if slot%5:
                 continue
-            frame=Image.new('RGB',(796,298),'#10181d')
+            frame=Image.new('RGB',(796,322 if recovery else 298),'#10181d')
             draw=ImageDraw.Draw(frame)
-            for i,(rig,renderer) in enumerate(zip(rigs,renderers)):
-                mj.mj_forward(rig.model,rig.data)
-                camera.lookat[:]=[*rig.data.xpos[rig.trunk,:2],.125]
-                renderer.update_scene(rig.data,camera=camera,scene_option=options)
+            for i,(rig,renderer,snapshot) in enumerate(zip(rigs,renderers,snapshots)):
+                if recovery:
+                    snapshot.qpos[:]=rig.data.qpos
+                mj.mj_forward(rig.model,snapshot)
+                camera.lookat[:]=[*snapshot.xpos[rig.trunk,:2],.125]
+                renderer.update_scene(snapshot,camera=camera,scene_option=options)
                 frame.paste(Image.fromarray(renderer.render()),(400*i,0))
                 title=titles[i]
                 draw.text((400*i+9,270),title,fill='#f4faf7',font=font)
-            draw.text((723,270),f'{rigs[0].data.time:.1f} s',fill='#b9d6ca',font=font)
+                if recovery:
+                    phase={'default_pose':'Fall settling', 'getup':'Get-up policy', 'walk':'Walking policy'}.get(
+                        rig.recovery.phase,rig.recovery.phase)
+                    draw.text((400*i+9,293),phase,fill='#9dbab1',font=font)
+            draw.text((723,293 if recovery else 270),f'{rigs[0].data.time:.1f} s',fill='#b9d6ca',font=font)
             frames.append(frame)
     finally:
         for renderer in renderers:
@@ -68,7 +84,7 @@ def replay(sim_type, output, case):
 if __name__=='__main__':
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('runtime',type=Path)
-    parser.add_argument('--case',choices=('walk','right','draped','draped-walk'))
+    parser.add_argument('--case',choices=('walk','right','draped','draped-walk','recovery'))
     args=parser.parse_args()
     checks=runpy.run_path(str(args.runtime/'tools/check-duck-hardware.py'))
     for case in ([args.case] if args.case else ('walk','right','draped','draped-walk')):

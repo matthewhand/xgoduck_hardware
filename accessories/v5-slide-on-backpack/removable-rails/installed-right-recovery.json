@@ -1,0 +1,32 @@
+{
+  "fixed": {
+    "mass_g": 886.15,
+    "upright": true,
+    "transitions": 3,
+    "fell": true,
+    "forward_m": 0.23741462345705794,
+    "yaw_deg": -77.11812432460958,
+    "peak_tilt_deg": 103.27282295032221,
+    "both_feet": 41,
+    "recovered_s": 3.3,
+    "resumed_forward_m": 2.3379650974371256,
+    "resumed_both_feet": 38,
+    "passed": true,
+    "mean_trunk_forward_deg_last_5s": 8.408593993459425
+  },
+  "cartridges": {
+    "mass_g": 887.32,
+    "upright": true,
+    "transitions": 3,
+    "fell": true,
+    "forward_m": 0.42863609198861724,
+    "yaw_deg": -75.01604200974977,
+    "peak_tilt_deg": 103.01695748847006,
+    "both_feet": 40,
+    "recovered_s": 3.3,
+    "resumed_forward_m": 2.3159001006498903,
+    "resumed_both_feet": 38,
+    "passed": true,
+    "mean_trunk_forward_deg_last_5s": 8.404717261831578
+  }
+}

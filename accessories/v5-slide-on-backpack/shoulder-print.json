@@ -1,0 +1,18 @@
+{
+  "fusion_mm3": 45.76,
+  "printed_solid_mass_g": {
+    "stem + cartridge": 16.606,
+    "soft_tip": 0.244,
+    "soft_outboard": 0.385,
+    "soft_inboard": 0.385
+  },
+  "axial_compliance_mm_per_N_at_2GPa": 1.689,
+  "registered_stem_print_bounds_mm": [
+    0.0,
+    0.0,
+    0.0,
+    93.89,
+    224.13,
+    83.41
+  ]
+}

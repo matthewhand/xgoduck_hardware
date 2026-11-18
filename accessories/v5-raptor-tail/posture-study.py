@@ -11,10 +11,11 @@ HERE=Path(__file__).resolve().parent
 sizing=runpy.run_path(str(HERE/'size-study.py'))
 
 
-def simulation(base, length, target, neck, head, draped=True, speed=.2):
+def simulation(base, length, target, neck, head, draped=True, speed=.2, *,
+               build_attachment=None, transition_after_recovery=False):
     class PostureTrial(base):
         def __init__(self,vx,yaw,**kwargs):
-            kwargs['configure']=lambda spec:sizing['build'](spec,length,1,1.,draped=draped)
+            kwargs['configure']=build_attachment or (lambda spec:sizing['build'](spec,length,1,1.,draped=draped))
             super().__init__(speed,yaw,**kwargs)
             m=self.model
             if target is not None:
@@ -27,7 +28,7 @@ def simulation(base, length, target, neck, head, draped=True, speed=.2):
                     def run(self,outputs,feed):
                         key=next(iter(feed))
                         obs=feed[key].copy()
-                        angle=np.deg2rad(target)*np.clip((rig.data.time-2)/1.5,0,1)
+                        angle=np.deg2rad(target)*rig.posture_ramp()
                         x,z=obs[0,[3,5]]
                         obs[0,3]=np.cos(angle)*x+np.sin(angle)*z
                         obs[0,5]=-np.sin(angle)*x+np.cos(angle)*z
@@ -41,9 +42,20 @@ def simulation(base, length, target, neck, head, draped=True, speed=.2):
             self.contacts=0
             self.substeps=0
 
+        def posture_ramp(self):
+            if self.recovery.phase!='walk':
+                return 0.
+            if transition_after_recovery:
+                if self.resumed_at_s is None:
+                    return 0.
+                return np.clip((self.data.time-self.resumed_at_s-.3)/1.5,0,1)
+            return np.clip((self.data.time-2)/1.5,0,1)
+
         def tick(self):
             m,d=self.model,self.data
-            ramp=np.clip((d.time-2)/1.5,0,1) if self.recovery.phase=='walk' else 0.
+            ramp=self.posture_ramp()
+            if transition_after_recovery:
+                self.command=(.2+(speed-.2)*ramp,0,0)
             self.obs[0,51:53]=ramp*np.deg2rad([neck,head])
             def contacts(sim,feet):
                 if d.time>=5:
