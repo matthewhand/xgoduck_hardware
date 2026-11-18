@@ -1,6 +1,7 @@
 """Render the Grove cassette and nominal cable routes fitted to the V5 walking mesh."""
 from pathlib import Path
 import runpy
+import argparse
 
 import mujoco as mj
 import numpy as np
@@ -15,37 +16,52 @@ colours = {"carrier": (.98,.52,.14), "deck": (.35,.42,.45), "pcb": (.10,.42,.80)
            "csi_ribbon": (1,.76,.32), "grove_socket": (.94,.94,.88), "csi_socket": (.21,.23,.26)}
 
 
-def configure(spec):
+def configure(spec, duckling=False):
     check["add_stack"](spec, "removed")
     for g in spec.geoms:
         if g.name.startswith("stack_"):
             g.group = 5
     body = spec.body("trunk_base")
-    carrier, outlines = part["assembly"]()
-    for name, solid in dict(carrier=carrier,deck=part["STACK"]["deck"](),**outlines).items():
+    palette = dict(colours)
+    if duckling:
+        _, solids, outlines = runpy.run_path(str(HERE/"duckling.py"))["design"]()
+        palette.update(pack=(.06,.55,.54), face=(1,.79,.25), eyes=(.075,.042,.03),
+                       bill=(1,.38,.08), housing=(.20,.24,.26),
+                       lead=(.38,.82,.73))
+    else:
+        carrier, outlines = part["assembly"]()
+        solids={"carrier":carrier}
+    for name, solid in dict(solids,deck=part["STACK"]["deck"](),**outlines).items():
         mesh = solid.to_mesh()
         spec.add_mesh(name=name, uservert=check["trunk"](mesh.vert_properties[:,:3]).ravel(),
                       userface=mesh.tri_verts.ravel())
         body.add_geom(name=name, type=mj.mjtGeom.mjGEOM_MESH,meshname=name,
-                      mass=0,contype=0,conaffinity=0,group=1,rgba=(*colours[name],1))
+                      mass=0,contype=0,conaffinity=0,group=1,rgba=(*palette[name],1))
 
 
 def main():
+    cli=argparse.ArgumentParser(description=__doc__)
+    cli.add_argument("--duckling",action="store_true")
+    duckling=cli.parse_args().duckling
     runtime = HERE.parents[3] / "xgoduck_runtime_arduino"
-    sim = runpy.run_path(str(runtime / "tools/check-duck-hardware.py"))["WalkSimulation"](0,0,configure=configure)
+    sim = runpy.run_path(str(runtime / "tools/check-duck-hardware.py"))["WalkSimulation"](0,0,configure=lambda s:configure(s,duckling))
     mj.mj_forward(sim.model,sim.data)
     canvas = Image.new("RGB",(900,382),"#172126")
     draw = ImageDraw.Draw(canvas)
     with mj.Renderer(sim.model,height=330,width=450) as renderer:
-        for i,(target,dist,az,el) in enumerate([((0,-.012,.045),.46,118,-14), ((-.023,-.058,.050),.188,95,-26)]):
+        views = ([((-.025,-.025,.04),.42,143,-12), ((-.059,-.048,.059),.19,145,-9)] if duckling
+                 else [((0,-.012,.045),.46,118,-14), ((-.023,-.058,.050),.188,95,-26)])
+        for i,(target,dist,az,el) in enumerate(views):
             camera=mj.MjvCamera()
             camera.lookat[:]=sim.data.xpos[sim.trunk]+sim.data.xmat[sim.trunk].reshape(3,3)@target
             camera.distance,camera.azimuth,camera.elevation=dist,az,el
             renderer.update_scene(sim.data,camera=camera)
             canvas.paste(Image.fromarray(renderer.render()),(i*450,0))
-    draw.text((12,340),"Grove Vision AI V2  ·  Right shoulder",font=base["font"](18,True),fill="white")
-    draw.text((462,340),"Grove lead (mint)    CSI ribbon (gold)",font=base["font"](18,True),fill="white")
-    canvas.save(HERE / "grove-shoulder.png")
+    captions = (("Duckling backpack","Camera window above the bill") if duckling else
+                ("Grove Vision AI V2  ·  Right shoulder","Grove lead (mint)    CSI ribbon (gold)"))
+    for i,label in enumerate(captions):
+        draw.text((12+450*i,340),label,font=base["font"](18,True),fill="white")
+    canvas.save(HERE / ("duckling-pocket.png" if duckling else "grove-shoulder.png"))
 
 
 if __name__=="__main__":

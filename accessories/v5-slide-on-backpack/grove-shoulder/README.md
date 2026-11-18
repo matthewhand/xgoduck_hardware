@@ -1,5 +1,7 @@
 # Grove Vision AI V2 shoulder cassette
 
+For the kit already in its housing, use the [Duckling camera backpack](DUCKLING.md).
+
 ![V5 shoulder camera, inference board and rear harness](grove-shoulder.png)
 
 This fit prototype slides into the [shoulder deck](../stack/stack.py) in place of the folding feeler. A forward-facing OV5647-62 camera sits at the end of a short boom. Its CSI ribbon runs to the Vision AI board on the same cassette. Two open-sided guides take the four-wire Grove lead back to the backpack. Leave a service loop there and unplug it before withdrawing the cassette.
