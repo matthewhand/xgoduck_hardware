@@ -1,0 +1,460 @@
+{
+  "version": 1,
+  "frame": "V5 enclosure STL millimetres, +Y toward head, -Z aft",
+  "joints": [
+    {
+      "child": "proximal",
+      "parent": "mount",
+      "axis": [
+        1,
+        0,
+        0
+      ],
+      "origin_mm": [
+        0.0,
+        25.0,
+        -14.0
+      ],
+      "range_deg": [
+        -16.0,
+        16.0
+      ]
+    },
+    {
+      "child": "distal",
+      "parent": "proximal",
+      "axis": [
+        0,
+        1,
+        0
+      ],
+      "origin_mm": [
+        0.0,
+        29.0,
+        -54.0
+      ],
+      "range_deg": [
+        -16.0,
+        16.0
+      ]
+    }
+  ],
+  "estimate": {
+    "parts": {
+      "rail-addition": {
+        "group": "mount",
+        "volume_cm3": 3.648045,
+        "center_mm": [
+          0.31644,
+          -14.28247,
+          4.02779
+        ],
+        "mass_g": {
+          "low": 3.283240120442603,
+          "nominal": 4.523575277054253,
+          "high": 4.8518992890985135
+        }
+      },
+      "tail-cover": {
+        "group": "mount",
+        "volume_cm3": 8.755892,
+        "center_mm": [
+          -1.48137,
+          -0.11358,
+          -1.75127
+        ],
+        "mass_g": {
+          "low": 7.8803026252053,
+          "nominal": 10.857305839171747,
+          "high": 11.645336101692278
+        }
+      },
+      "root-yoke": {
+        "group": "mount",
+        "volume_cm3": 2.1186,
+        "center_mm": [
+          0.58523,
+          26.00409,
+          -7.23989
+        ],
+        "mass_g": {
+          "low": 1.906739936729794,
+          "nominal": 2.6270639128277162,
+          "high": 2.8177379065006956
+        }
+      },
+      "root-pin": {
+        "group": "mount",
+        "volume_cm3": 0.140592,
+        "center_mm": [
+          -0.48211,
+          25.0,
+          -14.0
+        ],
+        "mass_g": {
+          "low": 0.1265327407838497,
+          "nominal": 0.17433399841330405,
+          "high": 0.18698727249168903
+        }
+      },
+      "root-cap": {
+        "group": "mount",
+        "volume_cm3": 0.041604,
+        "center_mm": [
+          8.525,
+          25.0,
+          -14.0
+        ],
+        "mass_g": {
+          "low": 0.04077238868417769,
+          "nominal": 0.04992537389899309,
+          "high": 0.05408582172390919
+        }
+      },
+      "yoke-screw-1": {
+        "group": "mount",
+        "volume_cm3": 0.165223,
+        "center_mm": [
+          -34.5,
+          26.5,
+          -3.67233
+        ],
+        "mass_g": {
+          "low": 0.75,
+          "nominal": 1.02,
+          "high": 1.35
+        }
+      },
+      "yoke-screw-2": {
+        "group": "mount",
+        "volume_cm3": 0.165223,
+        "center_mm": [
+          34.5,
+          26.5,
+          -3.67233
+        ],
+        "mass_g": {
+          "low": 0.75,
+          "nominal": 1.02,
+          "high": 1.35
+        }
+      },
+      "proximal-link": {
+        "group": "proximal",
+        "volume_cm3": 2.530688,
+        "center_mm": [
+          -0.00777,
+          27.73129,
+          -35.30886
+        ],
+        "mass_g": {
+          "low": 2.2776187654759865,
+          "nominal": 3.13805252132247,
+          "high": 3.3658143978700688
+        }
+      },
+      "distal-pin": {
+        "group": "proximal",
+        "volume_cm3": 0.140592,
+        "center_mm": [
+          0.0,
+          28.51789,
+          -54.0
+        ],
+        "mass_g": {
+          "low": 0.1265327407838496,
+          "nominal": 0.17433399841330388,
+          "high": 0.18698727249168887
+        }
+      },
+      "distal-cap": {
+        "group": "proximal",
+        "volume_cm3": 0.041604,
+        "center_mm": [
+          0.0,
+          37.525,
+          -54.0
+        ],
+        "mass_g": {
+          "low": 0.04077238868417764,
+          "nominal": 0.04992537389899302,
+          "high": 0.05408582172390911
+        }
+      },
+      "distal-link": {
+        "group": "distal",
+        "volume_cm3": 1.399384,
+        "center_mm": [
+          -0.04789,
+          30.88201,
+          -66.10929
+        ],
+        "mass_g": {
+          "low": 1.2594458431274629,
+          "nominal": 1.7352364949756154,
+          "high": 1.8611810792883619
+        }
+      }
+    },
+    "groups": {
+      "mount": {
+        "mass_g": {
+          "low": 14.73759,
+          "nominal": 20.2722,
+          "high": 22.25605
+        },
+        "centroid_mm": [
+          -0.63009,
+          3.06528,
+          -1.50181
+        ]
+      },
+      "proximal": {
+        "mass_g": {
+          "low": 2.44492,
+          "nominal": 3.36231,
+          "high": 3.60689
+        },
+        "centroid_mm": [
+          -0.00725,
+          27.9175,
+          -36.55552
+        ]
+      },
+      "distal": {
+        "mass_g": {
+          "low": 1.25945,
+          "nominal": 1.73524,
+          "high": 1.86118
+        },
+        "centroid_mm": [
+          -0.04789,
+          30.88201,
+          -66.10929
+        ]
+      }
+    },
+    "with_printed": {
+      "mass_g": {
+        "low": 18.44196,
+        "nominal": 25.36975,
+        "high": 27.72411
+      },
+      "centroid_mm": [
+        -0.50772,
+        8.2616,
+        -10.56657
+      ]
+    },
+    "scope": "Increment relative to stock including net enclosure rails, yoke, screws and both moving links. Excludes optional NFC tag."
+  },
+  "short_estimate": {
+    "parts": {
+      "rail-addition": {
+        "group": "mount",
+        "volume_cm3": 3.648045,
+        "center_mm": [
+          0.31644,
+          -14.28247,
+          4.02779
+        ],
+        "mass_g": {
+          "low": 3.283240120442603,
+          "nominal": 4.523575277054253,
+          "high": 4.8518992890985135
+        }
+      },
+      "tail-cover": {
+        "group": "mount",
+        "volume_cm3": 8.755892,
+        "center_mm": [
+          -1.48137,
+          -0.11358,
+          -1.75127
+        ],
+        "mass_g": {
+          "low": 7.8803026252053,
+          "nominal": 10.857305839171747,
+          "high": 11.645336101692278
+        }
+      },
+      "root-yoke": {
+        "group": "mount",
+        "volume_cm3": 2.1186,
+        "center_mm": [
+          0.58523,
+          26.00409,
+          -7.23989
+        ],
+        "mass_g": {
+          "low": 1.906739936729794,
+          "nominal": 2.6270639128277162,
+          "high": 2.8177379065006956
+        }
+      },
+      "root-pin": {
+        "group": "mount",
+        "volume_cm3": 0.140592,
+        "center_mm": [
+          -0.48211,
+          25.0,
+          -14.0
+        ],
+        "mass_g": {
+          "low": 0.1265327407838497,
+          "nominal": 0.17433399841330405,
+          "high": 0.18698727249168903
+        }
+      },
+      "root-cap": {
+        "group": "mount",
+        "volume_cm3": 0.041604,
+        "center_mm": [
+          8.525,
+          25.0,
+          -14.0
+        ],
+        "mass_g": {
+          "low": 0.04077238868417769,
+          "nominal": 0.04992537389899309,
+          "high": 0.05408582172390919
+        }
+      },
+      "yoke-screw-1": {
+        "group": "mount",
+        "volume_cm3": 0.165223,
+        "center_mm": [
+          -34.5,
+          26.5,
+          -3.67233
+        ],
+        "mass_g": {
+          "low": 0.75,
+          "nominal": 1.02,
+          "high": 1.35
+        }
+      },
+      "yoke-screw-2": {
+        "group": "mount",
+        "volume_cm3": 0.165223,
+        "center_mm": [
+          34.5,
+          26.5,
+          -3.67233
+        ],
+        "mass_g": {
+          "low": 0.75,
+          "nominal": 1.02,
+          "high": 1.35
+        }
+      },
+      "proximal-link": {
+        "group": "proximal",
+        "volume_cm3": 2.530688,
+        "center_mm": [
+          -0.00777,
+          27.73129,
+          -35.30886
+        ],
+        "mass_g": {
+          "low": 2.2776187654759865,
+          "nominal": 3.13805252132247,
+          "high": 3.3658143978700688
+        }
+      },
+      "distal-pin": {
+        "group": "proximal",
+        "volume_cm3": 0.140592,
+        "center_mm": [
+          0.0,
+          28.51789,
+          -54.0
+        ],
+        "mass_g": {
+          "low": 0.1265327407838496,
+          "nominal": 0.17433399841330388,
+          "high": 0.18698727249168887
+        }
+      },
+      "distal-cap": {
+        "group": "proximal",
+        "volume_cm3": 0.041604,
+        "center_mm": [
+          0.0,
+          37.525,
+          -54.0
+        ],
+        "mass_g": {
+          "low": 0.04077238868417764,
+          "nominal": 0.04992537389899302,
+          "high": 0.05408582172390911
+        }
+      },
+      "distal-link": {
+        "group": "distal",
+        "volume_cm3": 1.020324,
+        "center_mm": [
+          -0.06569,
+          30.50032,
+          -60.87624
+        ],
+        "mass_g": {
+          "low": 0.9182917409988137,
+          "nominal": 1.2652019542650321,
+          "high": 1.3570311283649135
+        }
+      }
+    },
+    "groups": {
+      "mount": {
+        "mass_g": {
+          "low": 14.73759,
+          "nominal": 20.2722,
+          "high": 22.25605
+        },
+        "centroid_mm": [
+          -0.63009,
+          3.06528,
+          -1.50181
+        ]
+      },
+      "proximal": {
+        "mass_g": {
+          "low": 2.44492,
+          "nominal": 3.36231,
+          "high": 3.60689
+        },
+        "centroid_mm": [
+          -0.00725,
+          27.9175,
+          -36.55552
+        ]
+      },
+      "distal": {
+        "mass_g": {
+          "low": 0.91829,
+          "nominal": 1.2652,
+          "high": 1.35703
+        },
+        "centroid_mm": [
+          -0.06569,
+          30.50032,
+          -60.87624
+        ]
+      }
+    },
+    "with_printed": {
+      "mass_g": {
+        "low": 18.1008,
+        "nominal": 24.89972,
+        "high": 27.21997
+      },
+      "centroid_mm": [
+        -0.5173,
+        7.8152,
+        -9.25218
+      ]
+    },
+    "scope": "Increment relative to stock including net enclosure rails, yoke, screws and both moving links. Excludes optional NFC tag."
+  }
+}

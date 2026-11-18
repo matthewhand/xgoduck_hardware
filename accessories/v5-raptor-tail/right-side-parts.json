@@ -1,0 +1,58 @@
+{
+  "only rail-addition": {
+    "passed": true,
+    "recovered_s": 3.14
+  },
+  "all except rail-addition": {
+    "passed": false,
+    "recovered_s": null
+  },
+  "only tail-cover": {
+    "passed": false,
+    "recovered_s": null
+  },
+  "all except tail-cover": {
+    "passed": false,
+    "recovered_s": null
+  },
+  "only root-yoke": {
+    "passed": false,
+    "recovered_s": null
+  },
+  "all except root-yoke": {
+    "passed": false,
+    "recovered_s": null
+  },
+  "only root-pin": {
+    "passed": false,
+    "recovered_s": null
+  },
+  "all except root-pin": {
+    "passed": false,
+    "recovered_s": null
+  },
+  "only root-cap": {
+    "passed": false,
+    "recovered_s": null
+  },
+  "all except root-cap": {
+    "passed": false,
+    "recovered_s": null
+  },
+  "only yoke-screw-1": {
+    "passed": false,
+    "recovered_s": null
+  },
+  "all except yoke-screw-1": {
+    "passed": false,
+    "recovered_s": null
+  },
+  "only yoke-screw-2": {
+    "passed": false,
+    "recovered_s": null
+  },
+  "all except yoke-screw-2": {
+    "passed": false,
+    "recovered_s": null
+  }
+}

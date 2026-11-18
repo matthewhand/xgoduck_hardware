@@ -1,0 +1,72 @@
+{
+  "standard": {
+    "working_deg": [
+      -16,
+      16
+    ],
+    "poses_sampled": 25,
+    "individual_angles_sampled": 73,
+    "onset_deg_pitch_yaw": [
+      [
+        -18.19,
+        18.19
+      ],
+      [
+        -18.19,
+        18.19
+      ]
+    ]
+  },
+  "short": {
+    "working_deg": [
+      -16,
+      16
+    ],
+    "poses_sampled": 25,
+    "individual_angles_sampled": 73,
+    "onset_deg_pitch_yaw": [
+      [
+        -18.19,
+        18.19
+      ],
+      [
+        -18.19,
+        18.19
+      ]
+    ]
+  },
+  "rail": {
+    "0.15": {
+      "sweep_mm3": 0.0,
+      "reader_and_tag_sweep_mm3": 0.0,
+      "bottom_stop_mm3": 11.101,
+      "latch_overlap_mm3": 2.31
+    },
+    "0.25": {
+      "sweep_mm3": 0.0,
+      "reader_and_tag_sweep_mm3": 0.0,
+      "bottom_stop_mm3": 10.481,
+      "latch_overlap_mm3": 2.31
+    },
+    "0.35": {
+      "sweep_mm3": 0.0,
+      "reader_and_tag_sweep_mm3": 0.0,
+      "bottom_stop_mm3": 9.861,
+      "latch_overlap_mm3": 2.31
+    }
+  },
+  "tag": {
+    "placeholder_mm": [
+      6,
+      17,
+      0.7
+    ],
+    "reader_clearance_checked_mm": [
+      11.2,
+      26,
+      3
+    ],
+    "first_shared_rail_obstruction_z_mm": 4.4,
+    "first_stock_obstruction_z_mm": 6.0
+  }
+}

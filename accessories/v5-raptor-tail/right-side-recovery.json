@@ -1,0 +1,89 @@
+{
+  "conditions": "Same right-side start, stock walk and get-up. Toggle only contact participation of attachment geoms; all masses and inertias retained within either length.",
+  "trials": {
+    "standard-all": {
+      "mass_g": 823.16,
+      "upright": false,
+      "transitions": 2,
+      "fell": true,
+      "forward_m": 0.031208713646393646,
+      "yaw_deg": 41.5227940640099,
+      "peak_tilt_deg": 102.67565566505965,
+      "both_feet": 0,
+      "recovered_s": null,
+      "resumed_forward_m": null,
+      "resumed_both_feet": 0,
+      "pass": false
+    },
+    "standard-mount-only": {
+      "mass_g": 823.16,
+      "upright": false,
+      "transitions": 2,
+      "fell": true,
+      "forward_m": 0.033542681645095634,
+      "yaw_deg": 41.76486915398835,
+      "peak_tilt_deg": 102.67565566505965,
+      "both_feet": 0,
+      "recovered_s": null,
+      "resumed_forward_m": null,
+      "resumed_both_feet": 0,
+      "pass": false
+    },
+    "standard-none": {
+      "mass_g": 823.16,
+      "upright": true,
+      "transitions": 3,
+      "fell": true,
+      "forward_m": 0.9958160561175594,
+      "yaw_deg": 306.52208951254937,
+      "peak_tilt_deg": 108.14602571871812,
+      "both_feet": 41,
+      "recovered_s": 2.84,
+      "resumed_forward_m": 2.088423389992295,
+      "resumed_both_feet": 39,
+      "pass": true
+    },
+    "short-all": {
+      "mass_g": 822.69,
+      "upright": false,
+      "transitions": 2,
+      "fell": true,
+      "forward_m": 0.03083546285279809,
+      "yaw_deg": 41.82859086446493,
+      "peak_tilt_deg": 102.65201787657479,
+      "both_feet": 0,
+      "recovered_s": null,
+      "resumed_forward_m": null,
+      "resumed_both_feet": 0,
+      "pass": false
+    },
+    "short-mount-only": {
+      "mass_g": 822.69,
+      "upright": false,
+      "transitions": 2,
+      "fell": true,
+      "forward_m": 0.03275925328141692,
+      "yaw_deg": 42.76398655805047,
+      "peak_tilt_deg": 102.65201787657479,
+      "both_feet": 0,
+      "recovered_s": null,
+      "resumed_forward_m": null,
+      "resumed_both_feet": 0,
+      "pass": false
+    },
+    "short-none": {
+      "mass_g": 822.69,
+      "upright": true,
+      "transitions": 3,
+      "fell": true,
+      "forward_m": 1.0822896779259472,
+      "yaw_deg": 311.78722682654853,
+      "peak_tilt_deg": 108.04543265725326,
+      "both_feet": 41,
+      "recovered_s": 2.84,
+      "resumed_forward_m": 2.0941508359168615,
+      "resumed_both_feet": 39,
+      "pass": true
+    }
+  }
+}
