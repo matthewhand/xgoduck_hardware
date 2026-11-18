@@ -12,7 +12,15 @@ study=runpy.run_path(str(HERE/'size-study.py'))
 
 
 def replay(sim_type, output, case):
-    rigs=[sim_type(.2,0),sim_type(.2,0,configure=lambda s:study['build'](s,132,1,1.))]
+    if case in ('draped','draped-walk'):
+        posture=runpy.run_path(str(HERE/'posture-study.py'))['simulation']
+        old=posture(sim_type,132,None,-25,0,False)
+        new=posture(sim_type,167,16 if case=='draped' else 12,-48,-65,True,.45)
+        rigs=[old(.2,0),new(.45,0)]
+        titles=['132 mm · previous posture','167 mm · curved root']
+    else:
+        rigs=[sim_type(.2,0),sim_type(.2,0,configure=lambda s:study['build'](s,132,1,1.))]
+        titles=['Bare Duck','132 mm · one passive hinge']
     camera=mj.MjvCamera()
     camera.distance=.54
     camera.azimuth=104
@@ -46,7 +54,7 @@ def replay(sim_type, output, case):
                 camera.lookat[:]=[*rig.data.xpos[rig.trunk,:2],.125]
                 renderer.update_scene(rig.data,camera=camera,scene_option=options)
                 frame.paste(Image.fromarray(renderer.render()),(400*i,0))
-                title=('Bare Duck','132 mm · one passive hinge')[i]
+                title=titles[i]
                 draw.text((400*i+9,270),title,fill='#f4faf7',font=font)
             draw.text((723,270),f'{rigs[0].data.time:.1f} s',fill='#b9d6ca',font=font)
             frames.append(frame)
@@ -60,7 +68,8 @@ def replay(sim_type, output, case):
 if __name__=='__main__':
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('runtime',type=Path)
+    parser.add_argument('--case',choices=('walk','right','draped','draped-walk'))
     args=parser.parse_args()
     checks=runpy.run_path(str(args.runtime/'tools/check-duck-hardware.py'))
-    for case in ('walk','right'):
+    for case in ([args.case] if args.case else ('walk','right','draped','draped-walk')):
         replay(checks['WalkSimulation'],args.runtime/f'assets/sim/tail-size-{case}.webp',case)

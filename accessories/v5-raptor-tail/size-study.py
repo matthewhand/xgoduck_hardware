@@ -21,7 +21,7 @@ UP = np.array([AXIS[2], 0, -AXIS[0]])
 LEAN = np.deg2rad(-25)
 
 
-def build(spec, length_mm, hinges, mass_factor):
+def build(spec, length_mm, hinges, mass_factor, *, draped=False):
     if length_mm == 0:
         return
     configure(spec, PROFILE, 'locked')
@@ -30,12 +30,27 @@ def build(spec, length_mm, hinges, mass_factor):
     length = length_mm / 1000
     links = max(1, hinges)
     angles = np.linspace(0, 2*np.pi, 24, endpoint=False)
-    for link in range(links):
-        start, end = link/links, (link+1)/links
-        body = parent.add_body(name=f'study_link_{link}', pos=ROOT if link==0 else AXIS*length/links)
-        if hinges:
+    if draped and hinges!=1:
+        raise ValueError('The curved root uses one passive hinge below the backpack')
+    slopes=np.deg2rad([-63,-40,-18,3])
+    sections=SECTIONS[:,0]
+    axes=np.stack([-np.cos(slopes),np.zeros(4),np.sin(slopes)],axis=1)
+    centers=np.vstack([np.zeros(3),np.cumsum(np.diff(sections)[:,None]*axes,axis=0)])
+    def center(t):
+        if not draped:
+            return t*length*AXIS
+        return length*np.array([np.interp(t,sections,c) for c in centers.T])
+
+    bounds=[0,.18,1] if draped else np.linspace(0,1,links+1)
+    last=0
+    for link,(start,end) in enumerate(zip(bounds,bounds[1:])):
+        body = parent.add_body(name=f'study_link_{link}', pos=ROOT if link==0 else center(start)-center(last))
+        last=start
+        articulated=bool(hinges and (not draped or link>0))
+        if articulated:
+            limit=8 if draped else 16
             body.add_joint(name=f'study_pitch_{link}', type=mj.mjtJoint.mjJNT_HINGE,
-                           axis=[0,1,0], range=np.deg2rad([-16,16]), limited=True,
+                           axis=[0,1,0], range=np.deg2rad([-limit,limit]), limited=True,
                            stiffness=0, damping=.00032, frictionloss=.00008, armature=0)
         cuts = np.unique([start, *SECTIONS[(SECTIONS[:,0]>start)&(SECTIONS[:,0]<end),0], end])
         # Exact volume integral of the elliptical frusta, using Simpson's rule.
@@ -48,7 +63,12 @@ def build(spec, length_mm, hinges, mass_factor):
             mass = (hi-lo)*length*1240 * np.dot([1,4,1],full-.92*hollow)/6
             rings = []
             for i in [0,2]:
-                ring = ((stations[i]-start)*length*AXIS + np.outer(np.sin(angles)*rz[i],UP)
+                if draped:
+                    tangent_angle=np.interp(stations[i],sections,np.deg2rad([-63,-51.5,-29,-7.5,3]))
+                    up=np.array([np.sin(tangent_angle),0,np.cos(tangent_angle)])
+                else:
+                    up=UP
+                ring = (center(stations[i])-center(start) + np.outer(np.sin(angles)*rz[i],up)
                         + np.outer(np.cos(angles)*ry[i],[0,1,0]))
                 rings.extend(ring)
             name = f'candidate_{link}_{band}'
@@ -56,7 +76,9 @@ def build(spec, length_mm, hinges, mass_factor):
             body.add_geom(name=name,type=mj.mjtGeom.mjGEOM_MESH,meshname=name,
                           mass=mass*mass_factor,contype=1,conaffinity=0,group=1,
                           rgba=[.32+.08*(link%2),.66,.52,1])
-        if hinges:
+        if draped and end==1:
+            body.add_site(name='tail_tip',pos=center(1)-center(start),size=[.001,0,0])
+        if articulated:
             body.add_geom(type=mj.mjtGeom.mjGEOM_SPHERE,size=[.003,0,0],
                           mass=.0008*mass_factor,contype=0,conaffinity=0,group=1)
         parent = body

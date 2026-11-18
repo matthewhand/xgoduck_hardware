@@ -1,5 +1,20 @@
 # V5 tail motion and forward-running experiment
 
+## Tail sweeping down from the backpack
+
+The revised simulation uses a short, fixed root swept down 63° at the backpack. It gradually turns aft, ending 3° above the rearward horizontal in the trunk frame before joint deflection. One passive pitch hinge below the mount has ±8° travel. The lengths tested were 158, 167 and 176 mm along the centreline, roughly 20–33% longer than the previous 132 mm prototype. The same 80 × 50 mm maximum section retains an estimated moving-shell mass plus hinge and mount of 79.6–86.3 g.
+
+The walking policy receives independent neck-forward and head-back commands. Two trials with the 167 mm version also bias the pitch reference seen by the walking network while gravity, motor limits, and the recovery controller remain physical in MuJoCo. The comparison clips show the old 132 mm trial at a 0.20 m/s command beside the curved tail at a 0.45 m/s command. Angles below are measured against the world vertical for the trunk and neck, and horizontal for the bill. The table reports means over seconds 5–20.
+
+| 167 mm posture | Forward travel in 20 s | Trunk forward | Neck forward | Bill pitch | Tip aft of mount |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| Deep lean | 1.80 m | 13.5° | 44.1° | 1.8° down | 147.6 mm |
+| Moderate lean | 2.92 m | 8.5° | 37.7° | 5.8° up | 142.7 mm |
+
+The tip started approximately 128 mm aft in both trials. Neither tail touched the floor during the measurement window. The lighter lean travelled farther, although its distance was 63% of the bare Duck with the same inputs. All three lengths failed the nominal right-side recovery. The curved shapes are simulation concepts pending joint, self-clearance, and print design.
+
+Run `python posture-study.py RUNTIME posture-study.json` and `python render-size-study.py RUNTIME --case draped`. Use `--case draped-walk` for the moderate-lean replay. [All 32 posture trials](posture-study.json)
+
 ## Head-sized counterbalance study
 
 The V5 head shell spans **124 × 88 × 57 mm** in the policy's home stance. The moving neck subtree includes 260.9 g. Reducing neck pitch by 25° at the fixed standing pose shifted that subtree 31.88 mm forward and added 0.08160 N·m of forward gravity moment. This is an incremental moment relative to the same Duck standing with its head neutral.
