@@ -11,6 +11,8 @@ BASE = runpy.run_path(str(HERE / "carrier.py"))
 box, route = BASE["box"], BASE["route"]
 seated, stack = BASE["SEATED"], BASE["STACK"]
 ANCHOR = np.array([-55., -48., 20.])
+CASE_WIDTH, CASE_HEIGHT, CASE_DEPTH = 31.5, 30.5, 49.5
+USB_PROJECTION = .5
 
 
 def oval(center, radii):
@@ -22,30 +24,34 @@ def rounded_box(center, size, radius):
     return core.minkowski_sum(M.sphere(radius,24)).translate(center)
 
 
-def design(width=30.8, height=68.5, depth=28., lens_height=48.):
+def design(width=CASE_WIDTH, height=CASE_HEIGHT, depth=CASE_DEPTH, lens_height=None):
     """Local front plane is x=0. Insert the case from negative x until it seats."""
-    if min(width, height, depth) < 10 or not height*.45 < lens_height < height-6:
+    if lens_height is None:
+        lens_height = height/2
+    if min(width, height, depth) < 10 or not height*.40 < lens_height < height-6:
         raise ValueError("Check the dimensions and lens centre height above the case base")
     clearance = .45
+    body_depth = depth
+    depth += USB_PROJECTION
     half = width/2 + clearance
     socket = box(-depth-80,-half,-clearance,depth+80,2*half,height+2*clearance)
     lens_keepout = M.cylinder(45,8,8+45*np.tan(np.deg2rad(31)),64).rotate((0,90,0)).translate((0,0,lens_height))
     cable_slot = box(-depth-8,-7,-10,depth+5,14,17)
-    pocket_h = lens_height-14
+    pocket_h = max(8.,lens_height*.64)
     pack = rounded_box((-depth/2,0,pocket_h/2-1), (depth+6,width+8,pocket_h+4),4)
     # Welting around the pouch and a rounded outside pocket on its right cheek.
     pack += rounded_box((-depth/2,0,pocket_h-3),(depth+7,width+9,5),2)
-    pack += rounded_box((-depth/2,-half-2,pocket_h*.45),(depth*.65,6,pocket_h*.57),2.8)
-    pack += rounded_box((2,0,pocket_h*.39),(7,width*.78,pocket_h*.57),3)
+    pack += rounded_box((-depth/2,-half-2,pocket_h*.45),(depth*.65,6,pocket_h*.60),2)
+    pack += rounded_box((2,0,pocket_h*.39),(7,width*.78,pocket_h*.67),2.4)
     pack += rounded_box((3.2,0,pocket_h*.60),(6.8,width*.82,5.4),2.5)
     # Strap slots open into the pocket near the rear. A removable band crosses
     # the back of the inserted case, leaving its front window and bottom lead free.
     for side in (-1,1):
-        pack -= box(-depth+2, side*half-8, 11, 3,16,9)
-        pack -= box(-depth-5, side*half-1.4, 11, 9,2.8,9)
-    pack = (pack - socket) - cable_slot
+        pack -= box(-depth+2, side*half-8, 1.5, 3,16,min(9,pocket_h-3))
+        pack -= box(-depth-5, side*half-1.4, 1.5, 9,2.8,min(9,pocket_h-3))
+    pack = pack - socket - cable_slot - lens_keepout
 
-    face = oval((-4,0,lens_height+1),(depth*.64,half+6,height-lens_height+4))
+    face = oval((-4,0,lens_height+1),(18,half+6,height-lens_height+4))
     for i in range(2):
         tuft = oval((0,0,0),(3,2.6,6-i)).rotate((0,-32-10*i,0))
         face += tuft.translate((-6-4*i,(-1)**i*2,height+2-i))
@@ -53,19 +59,18 @@ def design(width=30.8, height=68.5, depth=28., lens_height=48.):
     for sign in (-1,1):
         eye = (7,sign*(half*.98),lens_height+6)
         eyes += oval(eye,(3.8,3.4,4.3))
-    bill = oval((9,0,lens_height-19),(14,half*.73,3.8))
-    bill += oval((8,0,lens_height-21.8),(11,half*.64,2.7))
+    bill_height = max(1.5,lens_height-19)
+    bill = oval((6,0,bill_height),(10,half*.73,3.3))
+    bill += oval((5,0,bill_height-2.2),(8.5,half*.64,2.4))
     # Keep the face shallow in front of the glass so the optical port stays small.
     face = face.scale((.50,1,1))
     eyes = eyes.scale((.50,1,1))
     # Every printable colour is masked by the full insertion volume and optics.
-    face = face - socket - lens_keepout
-    bill = bill - socket - lens_keepout
-    eyes = eyes - socket - lens_keepout
-    details = {"bill":bill, "eyes":eyes}
-    outer = pack + face + bill + eyes
-    face -= bill+eyes
-    pack -= face+bill+eyes
+    trim = socket + lens_keepout + cable_slot
+    outer = (pack + face + bill + eyes) - trim
+    pack -= face + bill + eyes
+    face = face - bill - eyes - trim
+    details = {"bill":bill-trim, "eyes":eyes-trim}
     def fitted(s):
         return seated(s.translate(ANCHOR))
     root = BASE["SHOULDER"]["ROOT"]
@@ -79,17 +84,21 @@ def design(width=30.8, height=68.5, depth=28., lens_height=48.):
     assert len(components)==1 and all(v.volume()>0 for v in solids.values())
     whole = components[0].simplify(.002)
     assert max((whole ^ fitted(tool)).volume() for tool in (socket,lens_keepout)) < 1e-4
-    case = rounded_box((-depth/2,0,height/2),(depth,width,height),2.4)
+    case = rounded_box((-body_depth/2,0,height/2),(body_depth,width,height),2.4)
     lens = M.cylinder(1.2,4.8,4.8,40).rotate((0,90,0)).translate((-.3,0,lens_height))
-    lead = route([(-depth+4,0,3),(-depth-3,0,1),(-depth-5,0,-5),(-depth-4,4,-9),(-depth+1,8,-11)],1.5)
-    assert max((whole ^ fitted(v)).volume() for v in (case,lens,lead)) < .001
-    visual = {"housing": fitted(case), "lens": fitted(lens), "lead": fitted(lead)}
+    # Reserve the complete far end for the socket, irrespective of its lateral position.
+    rear_end = box(-depth,-width/2,0,USB_PROJECTION,width,height)
+    usb = rounded_box((-body_depth-USB_PROJECTION/2,0,height/2),(.5,9,3.5),.2)
+    # Illustrative separate Grove lead. Its actual exit is still to be measured.
+    lead = route([(-body_depth,0,5),(-depth-4,0,5),(-depth-9,1,2),(-depth-10,4,-4)],1.5)
+    assert max((whole ^ fitted(v)).volume() for v in (case,lens,lead,rear_end)) < .001
+    visual = {"housing": fitted(case), "lens": fitted(lens), "lead": fitted(lead), "usb_socket":fitted(usb)}
     return whole, solids, visual
 
 
 if __name__=="__main__":
     cli=argparse.ArgumentParser(description=__doc__)
-    for field,default in [('width',30.8),('height',68.5),('depth',28.),('lens-height',48.)]:
+    for field,default in [('width',CASE_WIDTH),('height',CASE_HEIGHT),('depth',CASE_DEPTH),('lens-height',None)]:
         cli.add_argument('--'+field,type=float,default=default)
     whole, solids, _ = design(**vars(cli.parse_args()))
     path = HERE / 'duckling-pocket.stl'

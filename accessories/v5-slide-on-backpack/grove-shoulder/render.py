@@ -27,7 +27,7 @@ def configure(spec, duckling=False):
         _, solids, outlines = runpy.run_path(str(HERE/"duckling.py"))["design"]()
         palette.update(pack=(.06,.55,.54), face=(1,.79,.25), eyes=(.075,.042,.03),
                        bill=(1,.38,.08), housing=(.20,.24,.26),
-                       lead=(.38,.82,.73))
+                       usb_socket=(.76,.78,.8), lead=(.38,.82,.73))
     else:
         carrier, outlines = part["assembly"]()
         solids={"carrier":carrier}
@@ -49,7 +49,7 @@ def main():
     canvas = Image.new("RGB",(900,382),"#172126")
     draw = ImageDraw.Draw(canvas)
     with mj.Renderer(sim.model,height=330,width=450) as renderer:
-        views = ([((-.025,-.025,.04),.42,143,-12), ((-.059,-.048,.059),.19,145,-9)] if duckling
+        views = ([((-.025,-.025,.04),.42,143,-12), ((-.075,-.048,.038),.18,130,-14)] if duckling
                  else [((0,-.012,.045),.46,118,-14), ((-.023,-.058,.050),.188,95,-26)])
         for i,(target,dist,az,el) in enumerate(views):
             camera=mj.MjvCamera()
