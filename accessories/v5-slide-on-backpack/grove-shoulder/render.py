@@ -57,7 +57,7 @@ def main():
             camera.distance,camera.azimuth,camera.elevation=dist,az,el
             renderer.update_scene(sim.data,camera=camera)
             canvas.paste(Image.fromarray(renderer.render()),(i*450,0))
-    captions = (("Duckling backpack","Camera window above the bill") if duckling else
+    captions = (("Duckling backpack","USB-C on the short end nearest the lens") if duckling else
                 ("Grove Vision AI V2  ·  Right shoulder","Grove lead (mint)    CSI ribbon (gold)"))
     for i,label in enumerate(captions):
         draw.text((12+450*i,340),label,font=base["font"](18,True),fill="white")
